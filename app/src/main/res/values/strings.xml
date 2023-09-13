@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ShoeShop</string>
+    <string name="t_m_ki_m">
+    T\u00C3\u00ACm ki\u00E1\u00BA\u00BFm
+    </string>
+    <string name="xem_th_m_">
+    Xem th\u00C3\u00AAm >>
+    </string>
+    <string name="product_1">
+    Product 1
+    </string>
+    <string name="some_id">
+    1,050,000 \u00C4\u0091
+    </string>
+</resources>
