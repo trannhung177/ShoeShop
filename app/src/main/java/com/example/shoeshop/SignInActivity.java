@@ -39,7 +39,7 @@ public class SignInActivity extends AppCompatActivity {
                     Toast.makeText(SignInActivity.this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 }
                 else {
-
+                    Toast.makeText(SignInActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                 }
             }
         });
