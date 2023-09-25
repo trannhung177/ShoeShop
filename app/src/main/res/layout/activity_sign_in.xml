@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignInActivity">
+    <EditText
+
+        android:id="@+id/edtSDTLogin"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/border_edittext"
+        android:ems="10"
+        android:inputType="text"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/edtPasswordLogin"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/border_edittext"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edtSDTLogin"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnSignin"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/border_edittext"
+        android:text="Đăng nhập"
+        app:backgroundTint="@color/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtPasswordLogin" />
+
+    <TextView
+        android:id="@+id/tvNotAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Bạn chưa có tài khoản?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.401"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/edtSDTLogin"
+        android:text="Nhập số điện thoại"
+        android:textSize="12dp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/edtSDTLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.342"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:labelFor="@id/edtSDTLogin"
+        android:text="Nhập mật khẩu"
+        android:textSize="12dp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/edtPasswordLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.323"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tvLinkToSignUp"
+        android:layout_width="88dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:onClick="onClick"
+        android:text="@string/signin"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvNotAccount"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignin" />
+</androidx.constraintlayout.widget.ConstraintLayout>

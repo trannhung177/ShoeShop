@@ -12,4 +12,8 @@
     <string name="some_id">
     1,050,000 \u00C4\u0091
     </string>
+
+    <string name="signin"><b><u>Đăng ký</u></b></string>
+    <string name="signup"><b><u>Đăng nhập</u></b></string>
+
 </resources>
