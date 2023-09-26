@@ -15,5 +15,6 @@
 
     <string name="signin"><b><u>Đăng ký</u></b></string>
     <string name="signup"><b><u>Đăng nhập</u></b></string>
+    <string name="URL_FIREBASE"></string>
 
 </resources>

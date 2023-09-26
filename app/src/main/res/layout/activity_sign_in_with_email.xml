@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignInActivity">
+    android:background="@color/background"
+    tools:context=".demo.SignInWithEmailActivity">
     <EditText
 
-        android:id="@+id/edtSDTLogin"
+        android:id="@+id/edtEmailLogin"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="250dp"
         android:background="@drawable/border_edittext"
         android:ems="10"
         android:inputType="text"
+        android:hint="\t Nhập email..."
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,19 +26,20 @@
         android:id="@+id/edtPasswordLogin"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/border_edittext"
         android:ems="10"
+        android:textStyle="italic"
+        android:hint="\t Nhập mật khẩu..."
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edtSDTLogin"
+        app:layout_constraintTop_toTopOf="@id/edtEmailLogin"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnSignin"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -48,44 +51,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtPasswordLogin" />
 
+
     <TextView
         android:id="@+id/tvNotAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Bạn chưa có tài khoản?"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.401"
+        app:layout_constraintHorizontal_bias="0.312"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSignin" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/edtSDTLogin"
-        android:text="Nhập số điện thoại"
-        android:textSize="12dp"
-        android:layout_marginBottom="5dp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/edtSDTLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.342"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:labelFor="@id/edtSDTLogin"
-        android:text="Nhập mật khẩu"
-        android:textSize="12dp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/edtPasswordLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.323"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tvLinkToSignUp"
@@ -95,10 +72,19 @@
         android:clickable="true"
         android:onClick="onClick"
         android:text="@string/signin"
-
-
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tvNotAccount"
         app:layout_constraintTop_toBottomOf="@+id/btnSignin" />
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/edtEmailLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
