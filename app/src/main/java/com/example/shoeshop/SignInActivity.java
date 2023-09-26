@@ -40,6 +40,7 @@ public class SignInActivity extends AppCompatActivity {
                 }
                 else {
                     Toast.makeText(SignInActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
         });
