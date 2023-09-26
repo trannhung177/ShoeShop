@@ -25,6 +25,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
+                finish();
 
             }
         });
@@ -40,6 +41,7 @@ public class SignInActivity extends AppCompatActivity {
                 }
                 else {
                     Toast.makeText(SignInActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
