@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <EditText
-            android:id="@+id/rectangle_4"
+            android:id="@+id/edt_searchC"
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
@@ -22,6 +22,7 @@
             android:background="@drawable/rectangle_4"
             />
         <ImageView
+            android:id="@+id/img_cart"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="25dp"
@@ -79,7 +80,7 @@
             android:layout_marginLeft="125dp"
             android:layout_marginTop="30dp"/>
         <TextView
-            android:id="@+id/rectangle_6"
+            android:id="@+id/tv_payment"
             android:layout_width="128dp"
             android:layout_height="59dp"
             android:layout_alignParentLeft="true"
@@ -101,6 +102,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="37dp">
         <ImageView
+            android:id="@+id/img_home"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
@@ -109,6 +111,7 @@
             android:src="@drawable/home_icon"
             />
         <ImageView
+            android:id="@+id/img_search"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
@@ -117,6 +120,7 @@
             android:src="@drawable/search_icon"
             />
         <ImageView
+            android:id="@+id/img_like"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
@@ -125,6 +129,7 @@
             android:src="@drawable/bookmark_icon"
             />
         <ImageView
+            android:id="@+id/img_profile"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
