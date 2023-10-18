@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import com.example.shoeshop.Models.ProductModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,7 +23,7 @@ public class listProduct extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference dbreference;
     itemAdapter adepter;
-    ArrayList<productModel> list;
+    ArrayList<ProductModel> list;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +34,17 @@ public class listProduct extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 
         dbreference= FirebaseDatabase.getInstance().getReference("Products");
+
         recyclerView.setHasFixedSize(true);
 
         list = new ArrayList<>();
-        adepter=  new itemAdapter(list, this);
+        //adepter=  new itemAdapter(list, this);
         recyclerView.setAdapter(adepter);
         dbreference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    productModel productModel= dataSnapshot.getValue(com.example.shoeshop.productModel.class);
+                    ProductModel productModel= dataSnapshot.getValue(ProductModel.class);
                     list.add(productModel);
                 }
                 adepter.notifyDataSetChanged();

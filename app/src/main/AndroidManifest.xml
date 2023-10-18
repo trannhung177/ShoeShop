@@ -15,21 +15,23 @@
             android:name=".DemoAc"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
-            android:exported="false" />
-        <activity
             android:name=".product_item"
 
+            android:exported="false" >
+
+        </activity>
+        <activity android:name=".Admin.ManageProductList"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity
-            android:name=".SignInActivity"
-            android:exported="false" />
+        <activity android:name=".Admin.AddProduct">
+
+        </activity>
         <activity
             android:name=".listProduct"
             android:exported="false" />
