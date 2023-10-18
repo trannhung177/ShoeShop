@@ -38,7 +38,7 @@ public class listProduct extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         list = new ArrayList<>();
-        //adepter=  new itemAdapter(list, this);
+        adepter=  new itemAdapter(list, this);
         recyclerView.setAdapter(adepter);
         dbreference.addValueEventListener(new ValueEventListener() {
             @Override
