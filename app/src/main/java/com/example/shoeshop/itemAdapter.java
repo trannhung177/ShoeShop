@@ -1,5 +1,6 @@
 package com.example.shoeshop;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +18,10 @@ import java.util.ArrayList;
 
 public class itemAdapter extends RecyclerView.Adapter<itemAdapter.MyViewHolder> {
 
-    Context context;
+    Activity context;
     ArrayList<ProductModel>  list;
 
-    public itemAdapter(ArrayList<ProductModel> list,Context context) {
+    public itemAdapter(ArrayList<ProductModel> list,Activity context) {
 
         this.list = list;
         this.context = context;
