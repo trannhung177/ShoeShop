@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <EditText
-            android:id="@+id/rectangle_4"
+            android:id="@+id/edSearchP"
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
@@ -22,6 +22,7 @@
             android:background="@drawable/rectangle_4"
             />
         <ImageView
+            android:id="@+id/imgCartP"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="25dp"
@@ -55,6 +56,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="40dp">
         <ImageView
+            android:id="@+id/imgHomeP"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
@@ -63,6 +65,7 @@
             android:src="@drawable/home_icon"
             />
         <ImageView
+            android:id="@+id/imgSeachP"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
@@ -71,6 +74,7 @@
             android:src="@drawable/search_icon"
             />
         <ImageView
+            android:id="@+id/imgPreferP"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
@@ -79,6 +83,7 @@
             android:src="@drawable/bookmark_icon"
             />
         <ImageView
+            android:id="@+id/imgProfP"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
