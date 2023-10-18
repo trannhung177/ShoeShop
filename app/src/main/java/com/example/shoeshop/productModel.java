@@ -4,7 +4,7 @@ public class productModel  {
     String img, title,brand, discription;
     double cost, quantity;
 
-    public productModel1(String img, String title, double cost) {
+    public void productModel1(String img, String title, double cost) {
         this.img = img;
         this.title = title;
         this.cost = cost;

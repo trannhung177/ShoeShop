@@ -1,5 +1,6 @@
 package com.example.shoeshop;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.shoeshop.Models.ProductModel;
 import com.google.firebase.database.core.Context;
 
 import java.util.ArrayList;
 
 public class itemAdapter extends RecyclerView.Adapter<itemAdapter.MyViewHolder> {
 
-    Context context;
-    ArrayList<productModel>  list;
+    Activity context;
+    ArrayList<ProductModel>  list;
 
-    public itemAdapter(ArrayList<productModel> list,Context context) {
+    public itemAdapter(ArrayList<ProductModel> list,Activity context) {
 
         this.list = list;
         this.context = context;
@@ -35,10 +37,10 @@ public class itemAdapter extends RecyclerView.Adapter<itemAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        productModel productModel= list.get(position);
-        holder.title.setText(productModel.getTitle());
-        holder.price.setText((int) productModel.cost);
-        Glide.with(holder.img.getContext()).load(productModel.getImg())
+        ProductModel productModel= list.get(position);
+        holder.title.setText(productModel.getProductName());
+        holder.price.setText(productModel.getProductPrice().toString());
+        Glide.with(holder.img.getContext()).load(productModel.getProductImage())
                 .placeholder(R.drawable.baseline_image_24)
                 .error(R.drawable.baseline_image_24_2)
                 .into(holder.img);
