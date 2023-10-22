@@ -1,5 +1,7 @@
 package com.example.shoeshop;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +19,10 @@ import java.util.ArrayList;
 
 public class itemAdapter extends RecyclerView.Adapter<itemAdapter.MyViewHolder> {
 
-    Context context;
+    Activity context;
     ArrayList<ProductModel>  list;
 
-    public itemAdapter(ArrayList<ProductModel> list,Context context) {
+    public itemAdapter(ArrayList<ProductModel> list,Activity context) {
 
         this.list = list;
         this.context = context;
@@ -39,10 +41,24 @@ public class itemAdapter extends RecyclerView.Adapter<itemAdapter.MyViewHolder> 
         ProductModel productModel= list.get(position);
         holder.title.setText(productModel.getProductName());
         holder.price.setText( productModel.getProductPrice().toString());
-        Glide.with(holder.img.getContext()).load(productModel.getProductImage())
+        Glide.with(context).load(productModel.getProductImage())
                 .placeholder(R.drawable.baseline_image_24)
                 .error(R.drawable.baseline_image_24_2)
                 .into(holder.img);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(context,product_item.class);
+                intent.putExtra("imgProduct", productModel.getProductImage());
+                intent.putExtra("ProductName",productModel.getProductName() );
+                intent.putExtra("ProductPrice", productModel.getProductPrice());
+                intent.putExtra("ProductQuantity",productModel.getProductQuantity());
+                intent.putExtra("ProductDescrip", productModel.getProductDescription());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
 
     }
 

@@ -46,8 +46,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleviewProduct"
-        android:layout_width="300dp"
-        android:layout_height="500dp"/>
+        android:layout_width="350dp"
+        android:layout_height="400dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="20dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -55,15 +57,15 @@
         android:orientation="horizontal"
         android:layout_alignParentTop="true"
         android:layout_marginTop="40dp">
+
         <ImageView
             android:id="@+id/imgHomeP"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="37dp"
             android:layout_alignParentTop="true"
-            android:src="@drawable/home_icon"
-            />
+            android:layout_marginLeft="37dp"
+            android:src="@drawable/home_icon" />
         <ImageView
             android:id="@+id/imgSeachP"
             android:layout_width="40dp"

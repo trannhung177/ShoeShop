@@ -1,6 +1,10 @@
 package com.example.shoeshop;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,11 +14,24 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.shoeshop.Models.ProductModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     private EditText edt_search;
     private ImageView img_cart;
     private TextView tv_allproduct;
     private ImageView img_homeicon, img_seachicon, img_likeicon, img_profileicon;
+    private RecyclerView recyclerView;
+    private DatabaseReference dbreference;
+    private itemAdapter adepter;
+    private ArrayList<ProductModel> list;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +65,29 @@ public class MainActivity extends AppCompatActivity {
         img_seachicon = findViewById(R.id.iv_searchicon);
         img_likeicon= findViewById(R.id.iv_likeicon);
         img_profileicon= findViewById(R.id.iv_profileicon);
+        recyclerView=findViewById(R.id.ProductSuggest);
+        /*dbreference= FirebaseDatabase.getInstance().getReference("Products");
+
+        recyclerView.setHasFixedSize(true);
+
+        list = new ArrayList<>();
+        adepter=  new itemAdapter(list, this);
+        recyclerView.setAdapter(adepter);
+        dbreference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    ProductModel productModel= dataSnapshot.getValue(ProductModel.class);
+                    list.add(productModel);
+                }
+                adepter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });*/
     }
 }
