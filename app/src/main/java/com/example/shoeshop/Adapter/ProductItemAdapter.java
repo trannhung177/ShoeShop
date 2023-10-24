@@ -1,4 +1,4 @@
-package com.example.shoeshop;
+package com.example.shoeshop.Adapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,16 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.shoeshop.Models.ProductModel;
-import com.google.firebase.database.core.Context;
+import com.example.shoeshop.R;
+import com.example.shoeshop.product_item;
 
 import java.util.ArrayList;
 
-public class itemAdapter extends RecyclerView.Adapter<itemAdapter.MyViewHolder> {
+public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.MyViewHolder> {
 
     Activity context;
     ArrayList<ProductModel>  list;
 
-    public itemAdapter(ArrayList<ProductModel> list,Activity context) {
+    public ProductItemAdapter(ArrayList<ProductModel> list, Activity context) {
 
         this.list = list;
         this.context = context;
@@ -49,7 +50,7 @@ public class itemAdapter extends RecyclerView.Adapter<itemAdapter.MyViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(context,product_item.class);
+                Intent intent= new Intent(context, product_item.class);
                 intent.putExtra("imgProduct", productModel.getProductImage());
                 intent.putExtra("ProductName",productModel.getProductName() );
                 intent.putExtra("ProductPrice", productModel.getProductPrice());

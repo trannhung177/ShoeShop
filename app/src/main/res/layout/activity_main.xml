@@ -83,7 +83,7 @@
             android:layout_height="80dp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="22dp"
-            android:background="@drawable/nike"
+
             android:text="Tất cả"
             android:gravity="bottom"
             />
@@ -93,7 +93,6 @@
             android:layout_height="80dp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="22dp"
-            android:background="@drawable/nike"
             android:gravity="bottom"
             />
         <TextView
@@ -102,7 +101,6 @@
             android:layout_height="80dp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="22dp"
-            android:background="@drawable/adidas"
             android:gravity="bottom"
             />
         <TextView
@@ -110,8 +108,6 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="22dp"
-            android:background="@drawable/balenciaga"
             android:gravity="bottom"
             />
 
@@ -145,29 +141,29 @@
             />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <GridView
         android:id="@+id/ProductSuggest"
-        android:layout_width="370dp"
-        android:layout_height="130dp"
-        android:layout_marginLeft="19dp"
+        android:layout_width="match_parent"
+        android:layout_height="215dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:scrollbars="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        android:numColumns="3"
+ />
+<!--    <LinearLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginTop="15dp">-->
+
+
+
+<!--    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="15dp">
-
-
-
-    </LinearLayout>
-
-    <LinearLayout
+        android:layout_height="70dp"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
@@ -176,7 +172,7 @@
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="37dp"
+
             android:src="@drawable/home_icon" />
 
         <ImageView

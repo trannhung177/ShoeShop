@@ -36,7 +36,6 @@ public class ManageProductList extends AppCompatActivity {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                productList.clear();
                 for (DataSnapshot ds : snapshot.getChildren()){
                     ProductModel product = ds.getValue(ProductModel.class);
                     productList.add(product);

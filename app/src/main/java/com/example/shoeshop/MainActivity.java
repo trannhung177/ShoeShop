@@ -2,8 +2,6 @@ package com.example.shoeshop;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
@@ -11,9 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.shoeshop.Adapter.ProductAdapter;
+import com.example.shoeshop.Adapter.ProductItemAdapter;
 import com.example.shoeshop.Models.ProductModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageView img_cart;
     private TextView tv_allproduct;
     private ImageView img_homeicon, img_seachicon, img_likeicon, img_profileicon;
-    private RecyclerView recyclerView;
+    private GridView recyclerView;
     private DatabaseReference dbreference;
-    private itemAdapter adepter;
+    private ProductAdapter adapter;
     private ArrayList<ProductModel> list;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -68,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.ProductSuggest);
         dbreference= FirebaseDatabase.getInstance().getReference("Products");
 
-        recyclerView.setHasFixedSize(true);
+        //recyclerView.setHasFixedSize(true);
 
         list = new ArrayList<>();
-        adepter=  new itemAdapter(list, this);
-        recyclerView.setAdapter(adepter);
+        adapter=  new ProductAdapter(this, list);
+        recyclerView.setAdapter(adapter);
         dbreference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     ProductModel productModel= dataSnapshot.getValue(ProductModel.class);
                     list.add(productModel);
                 }
-                adepter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
 
             }
 

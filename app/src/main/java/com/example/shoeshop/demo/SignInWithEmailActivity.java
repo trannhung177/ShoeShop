@@ -31,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 public class SignInWithEmailActivity extends AppCompatActivity {
     EditText edtEmail, edtPassword;
     Button btnSignIn;
-    TextView tvLinkToSignUp;
+    TextView tvLinkToSignUp, tvForgotPw;
     FirebaseAuth auth;
     ProgressDialog progressDialog;
     private String email="",password="";
@@ -59,6 +59,13 @@ public class SignInWithEmailActivity extends AppCompatActivity {
                 finish();
             }
         });
+        tvForgotPw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SignInWithEmailActivity.this, ForgotPasswordActivity.class));
+                finish();
+            }
+        });
 
     }
 
@@ -82,6 +89,7 @@ public class SignInWithEmailActivity extends AppCompatActivity {
         edtPassword = findViewById(R.id.edtPasswordLogin);
         tvLinkToSignUp = findViewById(R.id.tvLinkToSignUp);
         btnSignIn = findViewById(R.id.btnSignin);
+        tvForgotPw = findViewById(R.id.tvForgotPw);
     }
 
     private void loginUser(){
