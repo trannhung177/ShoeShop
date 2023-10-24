@@ -2,19 +2,16 @@ package com.example.shoeshop;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.SearchView;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ImageView;
 
 import com.example.shoeshop.Adapter.ProductAdapter;
-import com.example.shoeshop.Adapter.ProductItemAdapter;
 import com.example.shoeshop.Models.ProductModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,31 +21,61 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class listProduct extends AppCompatActivity {
-    RecyclerView recyclerView;
-    DatabaseReference dbreference;
-    //ProductItemAdapter adepter;
-    ProductAdapter adapter;
-    ArrayList<ProductModel> list;
+public class search_product extends AppCompatActivity {
+
+    EditText editText;
     GridView gridView;
-    ImageView homeicon;
+    private DatabaseReference dbreference;
+    private ProductAdapter adapter;
+    private ArrayList<ProductModel> list;
+    SearchView searchView;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_product);
-        homeicon = findViewById(R.id.imgHomeP);
+        setContentView(R.layout.activity_search_product);
 
-        homeicon.setOnClickListener(new View.OnClickListener() {
+        searchView=findViewById(R.id.edt_searchItem);
+        gridView= findViewById(R.id.lstItemSearch);
+
+        init();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(listProduct.this, MainActivity.class);
-                startActivity(i);
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return false;
             }
         });
-        //recyclerView= findViewById(R.id.recycleviewProduct);
-        //recyclerView.setLayoutManager(new GridLayoutManager(this,3));
 
+        
+
+    }
+    //filter tim kiếm
+    private void filter(String txt){
+        //xoa du lieumang
+        list.clear();
+        ArrayList<ProductModel> ftArr= new ArrayList<>();
+        for (ProductModel item: list ){
+            if(item.getProductName().toLowerCase().contains(txt.toLowerCase())){
+                //them item vao filtrelst
+                ftArr.add(item);
+
+                //them vao mang
+                list.add(item);
+            }
+        }
+        adapter.filterList(ftArr);
+
+    }
+
+    //lay du lieu tu db
+    private void init(){
         dbreference= FirebaseDatabase.getInstance().getReference("Products");
 
         //recyclerView.setHasFixedSize(true);
@@ -56,14 +83,13 @@ public class listProduct extends AppCompatActivity {
         list = new ArrayList<>();
         adapter=  new ProductAdapter(this, list);
         gridView.setAdapter(adapter);
-        //recyclerView.setAdapter(adepter);
         dbreference.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     ProductModel productModel= dataSnapshot.getValue(ProductModel.class);
                     list.add(productModel);
+
                 }
                 adapter.notifyDataSetChanged();
 
@@ -74,20 +100,5 @@ public class listProduct extends AppCompatActivity {
 
             }
         });
-
-        //click item
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String id = list.get(i).getId();
-                Intent intent = new Intent(listProduct.this, ProductDetailActivity.class);
-                intent.putExtra("id",id);
-                startActivity(intent);
-            }
-        });
-
-
-
-
     }
 }

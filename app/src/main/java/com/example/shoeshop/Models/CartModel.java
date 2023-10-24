@@ -5,19 +5,37 @@ import android.content.Intent;
 import java.io.Serializable;
 
 public class CartModel implements Serializable {
-    public String Id, UserId, ProductId;
-    Float Price;
-    Integer Quantity;
-    public CartModel(){
+    private String Id, UserId, ProductId, ProductName, ProductImage;
+    private Float Price;
+    private Integer Quantity;
 
+    public CartModel() {
     }
 
-    public CartModel(String id, String userId, String productId, Float price, Integer quantity) {
+    public CartModel(String id, String userId, String productId, String productName, String productImage, Float price, Integer quantity) {
         Id = id;
         UserId = userId;
         ProductId = productId;
         Price = price;
         Quantity = quantity;
+        ProductName = productName;
+        ProductImage = productImage;
+    }
+
+    public String getProductName() {
+        return ProductName;
+    }
+
+    public void setProductName(String productName) {
+        ProductName = productName;
+    }
+
+    public String getProductImage() {
+        return ProductImage;
+    }
+
+    public void setProductImage(String productImage) {
+        ProductImage = productImage;
     }
 
     public String getId() {
