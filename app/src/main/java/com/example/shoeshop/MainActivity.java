@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, ProductDetailActivity.class);
                 intent.putExtra("id",id);
                 startActivity(intent);
-    }
+            }
         });
     }
 }

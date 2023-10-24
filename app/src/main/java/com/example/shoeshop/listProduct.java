@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.example.shoeshop.Adapter.ProductAdapter;
@@ -59,6 +62,16 @@ public class listProduct extends AppCompatActivity {
             }
         });
 
+        //click item
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String id = list.get(i).getId();
+                Intent intent = new Intent(listProduct.this, ProductDetailActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+        });
 
 
 

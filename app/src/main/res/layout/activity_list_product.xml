@@ -61,7 +61,7 @@
 
         <ImageView
             android:id="@+id/imgHomeP"
-            android:layout_width="dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
