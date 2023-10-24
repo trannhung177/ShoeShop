@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".cart">
+    tools:context=".CartActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,6 +71,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginTop="30dp"/>
         <TextView
+            android:id="@+id/tvSumCartPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1,050,000 đ"
@@ -79,20 +80,18 @@
             android:textColor="@color/black"
             android:layout_marginLeft="125dp"
             android:layout_marginTop="30dp"/>
-        <TextView
+        <Button
             android:id="@+id/tv_payment"
             android:layout_width="128dp"
             android:layout_height="59dp"
             android:layout_alignParentLeft="true"
+            android:backgroundTint="@color/button"
             android:layout_marginLeft="260dp"
             android:layout_alignParentTop="true"
             android:layout_marginTop="13dp"
             android:text="Thanh toán"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="19dp"
             android:textStyle="bold"
-            android:background="@drawable/rectangle_3"
+
             />
     </RelativeLayout>
     <LinearLayout

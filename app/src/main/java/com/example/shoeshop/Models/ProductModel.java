@@ -1,19 +1,30 @@
 package com.example.shoeshop.Models;
 
-public class ProductModel {
-    public String productName, productBrand, productDescription, productImage;
+import java.io.Serializable;
+
+public class ProductModel implements Serializable {
+    public String id, productName, productBrand, productDescription, productImage;
     public Integer productQuantity;
     public Float productPrice;
 
     public ProductModel() {
     }
-    public ProductModel(String productName, String productBrand, String productDescription, Integer productQuantity, Float productPrice, String productImage) {
+    public ProductModel(String productId, String productName, String productBrand, String productDescription, Integer productQuantity, Float productPrice, String productImage) {
         this.productName = productName;
         this.productBrand = productBrand;
         this.productDescription = productDescription;
         this.productImage = productImage;
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
+        this.id = productId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getProductName() {

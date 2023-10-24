@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.GridView;
 
+import com.example.shoeshop.Adapter.ProductAdapter;
 import com.example.shoeshop.Adapter.ProductItemAdapter;
 import com.example.shoeshop.Models.ProductModel;
 import com.google.firebase.database.DataSnapshot;
@@ -19,9 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class listProduct extends AppCompatActivity {
-    RecyclerView recyclerView;
+    GridView gridView;
     DatabaseReference dbreference;
-    ProductItemAdapter adepter;
+    ProductAdapter adapter;
     ArrayList<ProductModel> list;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -29,16 +31,16 @@ public class listProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_product);
 
-        recyclerView= findViewById(R.id.recycleviewProduct);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        gridView= findViewById(R.id.recycleviewProduct);
+
 
         dbreference= FirebaseDatabase.getInstance().getReference("Products");
 
-        recyclerView.setHasFixedSize(true);
+
 
         list = new ArrayList<>();
-        adepter=  new ProductItemAdapter(list, this);
-        recyclerView.setAdapter(adepter);
+        adapter=  new ProductAdapter(this, list);
+        gridView.setAdapter(adapter);
         dbreference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -47,7 +49,7 @@ public class listProduct extends AppCompatActivity {
                     ProductModel productModel= dataSnapshot.getValue(ProductModel.class);
                     list.add(productModel);
                 }
-                adepter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
 
             }
 
