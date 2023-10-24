@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,15 +20,31 @@ import com.example.shoeshop.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductAdapter extends ArrayAdapter {
+public class ProductAdapter extends BaseAdapter {
     private Activity mContext;
     List<ProductModel> productsList;
 
     public ProductAdapter(Activity mContext, List<ProductModel> productsList){
-        super(mContext, R.layout.item_product,productsList);
+        super();
         this.mContext = mContext;
         this.productsList = productsList;
     }
+
+    @Override
+    public int getCount() {
+        return productsList.size();
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return productsList.get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
+
     @SuppressLint("CheckResult")
     @NonNull
     @Override

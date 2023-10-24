@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class cart extends AppCompatActivity {
+public class CartActivity extends AppCompatActivity {
     Intent i;
     private EditText edt_search;
     private ImageView img_homeicon, img_seachicon, img_likeicon, img_profileicon, img_cart;
@@ -23,7 +23,7 @@ public class cart extends AppCompatActivity {
         img_homeicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i = new Intent(cart.this, MainActivity.class);
+                i = new Intent(CartActivity.this, MainActivity.class);
                 startActivity(i);
             }
         });

@@ -116,7 +116,7 @@ public class AddProduct extends AppCompatActivity {
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("Products");
         String productId = db.push().getKey();
         ProductModel product =
-                new ProductModel(productName, productBrand, productDescription, productQuantity, productPrice, imgURL);
+                new ProductModel(productId, productName, productBrand, productDescription, productQuantity, productPrice, imgURL);
         if (productId != null){
             FirebaseDatabase.getInstance().getReference().child("Products").child(productId).setValue(product)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {

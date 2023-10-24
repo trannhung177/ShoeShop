@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.shoeshop.Models.ProductModel;
 import com.example.shoeshop.R;
-import com.example.shoeshop.product_item;
+import com.example.shoeshop.ProductDetailActivity;
 
 import java.util.ArrayList;
 
@@ -50,7 +50,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(context, product_item.class);
+                Intent intent= new Intent(context, ProductDetailActivity.class);
                 intent.putExtra("imgProduct", productModel.getProductImage());
                 intent.putExtra("ProductName",productModel.getProductName() );
                 intent.putExtra("ProductPrice", productModel.getProductPrice());
