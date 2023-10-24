@@ -1,7 +1,5 @@
 package com.example.shoeshop.Adapter;
 
-
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -20,11 +18,11 @@ import com.example.shoeshop.R;
 
 import java.util.List;
 
-public class ProductSimpleAdapter extends ArrayAdapter {
+public class ProductAdapter extends ArrayAdapter {
     private Activity mContext;
     List<ProductModel> productsList;
 
-    public ProductSimpleAdapter(Activity mContext, List<ProductModel> productsList){
+    public ProductAdapter(Activity mContext, List<ProductModel> productsList){
         super(mContext, R.layout.item_product,productsList);
         this.mContext = mContext;
         this.productsList = productsList;
@@ -35,12 +33,12 @@ public class ProductSimpleAdapter extends ArrayAdapter {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = mContext.getLayoutInflater();
-        View listItemView = inflater.inflate(R.layout.item_product,null,true);
+        View listItemView = inflater.inflate(R.layout.shoe_item,null,true);
 
-        TextView tvName = listItemView.findViewById(R.id.tvProductName);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView tvPrice = listItemView.findViewById(R.id.tvProductPrice);
+        TextView tvName = listItemView.findViewById(R.id.txtTitle);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView tvPrice = listItemView.findViewById(R.id.txtPrice);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
-        ImageView ivImg =  listItemView.findViewById(R.id.ivProductImg_MP);
+        ImageView ivImg =  listItemView.findViewById(R.id.imgProduct);
 
 
         ProductModel product = productsList.get(position);
@@ -50,7 +48,7 @@ public class ProductSimpleAdapter extends ArrayAdapter {
         Glide.with(mContext).load(product.getProductImage())
                 .placeholder(R.drawable.baseline_image_24)
                 .error(R.drawable.baseline_image_24_2).into(ivImg);
-                ;
+        ;
 
 
         return listItemView;
