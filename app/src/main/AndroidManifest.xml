@@ -17,7 +17,8 @@
             android:name=".search_product"
             android:exported="false" />
         <activity
-            android:name=".Admin.AddProduct"
+            android:name=".MainActivity"
+
 
             android:exported="true">
             <intent-filter>
@@ -30,7 +31,7 @@
             android:name=".listProduct"
             android:exported="false"></activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Admin.AddProduct"
             android:exported="false"></activity>
     </application>
 
