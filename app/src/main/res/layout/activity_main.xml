@@ -103,13 +103,13 @@
             android:layout_marginLeft="22dp"
             android:gravity="bottom"
             />
+
         <TextView
             android:id="@+id/tv_balenciagaBrand"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_alignParentLeft="true"
-            android:gravity="bottom"
-            />
+            android:gravity="bottom" />
 
 
     </LinearLayout>

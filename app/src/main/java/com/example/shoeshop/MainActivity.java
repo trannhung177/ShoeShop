@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference dbreference;
     private ProductAdapter adapter;
     private ArrayList<ProductModel> list;
+    Intent i;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +43,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //anh xa view
-        //edt_search=findViewById(R.id.edt_search);
         anhxa();
+        //tim kiem
+        edt_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i=new Intent(MainActivity.this,search_product.class);
+                startActivity(i);
+            }
+        });
         img_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intallprd);
             }
         });
+
     }
 
     private void anhxa(){
@@ -72,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
 
         //recyclerView.setHasFixedSize(true);
 
+
+
         list = new ArrayList<>();
         adapter=  new ProductAdapter(this, list);
         recyclerView.setAdapter(adapter);
@@ -81,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     ProductModel productModel= dataSnapshot.getValue(ProductModel.class);
                     list.add(productModel);
+
                 }
                 adapter.notifyDataSetChanged();
 
@@ -92,4 +105,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

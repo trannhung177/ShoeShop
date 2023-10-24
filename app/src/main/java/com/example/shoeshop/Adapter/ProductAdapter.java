@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.shoeshop.Models.ProductModel;
 import com.example.shoeshop.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductAdapter extends ArrayAdapter {
@@ -52,5 +53,10 @@ public class ProductAdapter extends ArrayAdapter {
 
 
         return listItemView;
+    }
+
+    public void filterList(ArrayList<ProductModel> ftArr) {
+        productsList= ftArr;
+        notifyDataSetChanged();
     }
 }
