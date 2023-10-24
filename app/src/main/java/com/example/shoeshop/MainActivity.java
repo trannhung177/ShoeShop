@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
         edt_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i=new Intent(MainActivity.this,search_product.class);
-                startActivity(i);
+                //i=new Intent(MainActivity.this,search_product.class);
+                //startActivity(i);
             }
         });
         img_cart.setOnClickListener(new View.OnClickListener() {
