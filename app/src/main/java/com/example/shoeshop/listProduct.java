@@ -24,26 +24,29 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class listProduct extends AppCompatActivity {
-    GridView gridView;
+    RecyclerView recyclerView;
     DatabaseReference dbreference;
+    //ProductItemAdapter adepter;
     ProductAdapter adapter;
     ArrayList<ProductModel> list;
+    GridView gridView;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_product);
 
-        gridView= findViewById(R.id.recycleviewProduct);
-
+        //recyclerView= findViewById(R.id.recycleviewProduct);
+        //recyclerView.setLayoutManager(new GridLayoutManager(this,3));
 
         dbreference= FirebaseDatabase.getInstance().getReference("Products");
 
-
+        //recyclerView.setHasFixedSize(true);
 
         list = new ArrayList<>();
         adapter=  new ProductAdapter(this, list);
         gridView.setAdapter(adapter);
+        //recyclerView.setAdapter(adepter);
         dbreference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
