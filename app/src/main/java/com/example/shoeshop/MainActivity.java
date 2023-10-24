@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         img_likeicon= findViewById(R.id.iv_likeicon);
         img_profileicon= findViewById(R.id.iv_profileicon);
         recyclerView=findViewById(R.id.ProductSuggest);
-        /*dbreference= FirebaseDatabase.getInstance().getReference("Products");
+        dbreference= FirebaseDatabase.getInstance().getReference("Products");
 
         recyclerView.setHasFixedSize(true);
 
@@ -88,6 +88,6 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });*/
+        });
     }
 }

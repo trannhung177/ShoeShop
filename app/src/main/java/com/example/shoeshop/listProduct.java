@@ -31,7 +31,7 @@ public class listProduct extends AppCompatActivity {
         setContentView(R.layout.activity_list_product);
 
         recyclerView= findViewById(R.id.recycleviewProduct);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerView.setLayoutManager(new GridLayoutManager(this,3));
 
         dbreference= FirebaseDatabase.getInstance().getReference("Products");
 
