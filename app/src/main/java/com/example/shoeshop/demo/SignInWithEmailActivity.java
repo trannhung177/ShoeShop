@@ -126,6 +126,7 @@ public class SignInWithEmailActivity extends AppCompatActivity {
                     startActivity(new Intent(SignInWithEmailActivity.this, ManageProductList.class));
                     finish();
                 }
+
             }
 
             @Override

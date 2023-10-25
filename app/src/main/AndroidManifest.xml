@@ -16,12 +16,20 @@
 
             android:name=".MainActivity"
 
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity android:name=".Admin.ManageProductList"
+            android:exported="false">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".listProduct"
@@ -37,10 +45,23 @@
             android:exported="false">
 
         </activity>
+        <activity android:name=".search_product"/>
         <activity android:name=".ProductDetailActivity"
             android:exported="false"/>
-        <activity android:name=".demo.SignInWithEmailActivity"/>
+        <activity android:name=".demo.SignInWithEmailActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".demo.SignUpUsingEmailActivity"/>
+        <activity android:name=".CartActivity"
+            android:exported="false">
+        </activity>
+        <activity android:name=".demo.ForgotPasswordActivity"/>
+
 
     </application>
 

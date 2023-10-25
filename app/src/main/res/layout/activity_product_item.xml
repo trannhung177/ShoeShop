@@ -34,10 +34,11 @@
             android:background="@drawable/rectangle_4"
             />
         <ImageView
-            android:id="@+id/imgCartI"
+            android:id="@+id/ivCart"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="25dp"
+
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="30dp"
             android:src="@drawable/cart_icon"/>
@@ -92,7 +93,7 @@
             android:textSize="19dp"
             />
         <TextView
-            android:id="@+id/tvQuantity"
+            android:id="@+id/tvProductDetailQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -139,7 +140,7 @@
             android:textSize="17dp"
             />
         <TextView
-            android:id="@+id/ProductDetailQuantity"
+            android:id="@+id/ProductSold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -167,7 +168,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="15dp">
-        <TextView
+        <Button
             android:id="@+id/tvAddtoCart"
             android:layout_width="148dp"
             android:layout_height="59dp"

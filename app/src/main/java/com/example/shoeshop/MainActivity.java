@@ -43,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
         //anh xa view
         anhxa();
         //tim kiem
-        edt_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //i=new Intent(MainActivity.this,search_product.class);
-                //startActivity(i);
-            }
-        });
+//        edt_search.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                i=new Intent(MainActivity.this,search_product.class);
+//                startActivity(i);
+//            }
+//        });
         img_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,20 +63,19 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        tv_allproduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intallprd =new Intent(MainActivity.this, listProduct.class);
-                startActivity(intallprd);
-            }
-        });
+//        tv_allproduct.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intallprd =new Intent(MainActivity.this, listProduct.class);
+//                startActivity(intallprd);
+//            }
+//        });
 
     }
 
     private void anhxa(){
         edt_search=findViewById(R.id.edt_search);
         img_cart= findViewById(R.id.iv_cart);
-        tv_allproduct= findViewById(R.id.tv_allproduct);
         img_homeicon= findViewById(R.id.iv_homeicon);
         img_seachicon = findViewById(R.id.iv_searchicon);
         img_likeicon= findViewById(R.id.iv_likeicon);

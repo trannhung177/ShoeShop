@@ -68,12 +68,13 @@ public class SignUpUsingEmailActivity extends AppCompatActivity {
                                     }
                                 }
                                 else {
-                                    UserModel user = new UserModel(fullname, email, password);
+                                    String userType ="user";
+                                    UserModel user = new UserModel(fullname, email, password, userType);
                                     String id = task.getResult().getUser().getUid();
                                     db.getReference().child("Users").child(id).setValue(user);
                                     Toast.makeText(SignUpUsingEmailActivity.this, "Tạo mới thành công",
                                             Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(SignUpUsingEmailActivity.this, MainActivity.class);
+                                    Intent i = new Intent(SignUpUsingEmailActivity.this, SignInWithEmailActivity.class);
                                     startActivity(i);
                                 }
                             }

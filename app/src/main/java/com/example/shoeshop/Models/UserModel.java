@@ -1,12 +1,21 @@
 package com.example.shoeshop.Models;
 
 public class UserModel {
-    String fullname, email, password;
+    String fullname, email, password, userType;
 
-    public UserModel(String fullname, String email, String password) {
+    public UserModel(String fullname, String email, String password, String userType) {
         this.fullname = fullname;
         this.email = email;
         this.password = password;
+        this.userType = userType;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public String getFullname() {
