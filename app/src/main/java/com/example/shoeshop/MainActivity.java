@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.shoeshop.Adapter.ProductAdapter;
 import com.example.shoeshop.Models.ProductModel;
+import com.example.shoeshop.Models.UserModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,9 +31,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_allproduct;
     private ImageView img_homeicon, img_seachicon, img_likeicon, img_profileicon;
     private GridView gridView;
-    private DatabaseReference dbreference;
+    private DatabaseReference dbreference, dbUser;
     private ProductAdapter adapter;
     private ArrayList<ProductModel> list;
+    private ArrayList<UserModel> lstUser;
     Intent i;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tv_allproduct= findViewById(R.id.tv_allproduct);
         //anh xa view
         anhxa();
         //tim kiem
@@ -57,19 +60,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(itcart);
             }
         });
+        tv_allproduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intallprd =new Intent(MainActivity.this, listProduct.class);
+                startActivity(intallprd);
+            }
+        });
         img_profileicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                i=new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(i);
             }
         });
-//        tv_allproduct.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intallprd =new Intent(MainActivity.this, listProduct.class);
-//                startActivity(intallprd);
-//            }
-//        });
+
 
     }
 
