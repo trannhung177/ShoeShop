@@ -77,6 +77,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intallprd);
             }
         });
+        img_profileicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i=new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 
