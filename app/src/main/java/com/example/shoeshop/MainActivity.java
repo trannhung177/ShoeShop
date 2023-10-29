@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private EditText edt_search;
     private ImageView img_cart;
-    private TextView tv_allproduct;
+    private TextView tv_allproduct,tvXemThem;
     private ImageView img_homeicon, img_seachicon, img_likeicon, img_profileicon;
     private GridView gridView;
     private DatabaseReference dbreference;
@@ -63,13 +63,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-//        tv_allproduct.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intallprd =new Intent(MainActivity.this, listProduct.class);
-//                startActivity(intallprd);
-//            }
-//        });
+        tv_allproduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intallprd =new Intent(MainActivity.this, listProduct.class);
+                startActivity(intallprd);
+            }
+        });
+        tvXemThem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intallprd =new Intent(MainActivity.this, listProduct.class);
+                startActivity(intallprd);
+            }
+        });
 
     }
 
@@ -81,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
         img_likeicon= findViewById(R.id.iv_likeicon);
         img_profileicon= findViewById(R.id.iv_profileicon);
         gridView=findViewById(R.id.ProductSuggest);
+        tv_allproduct = findViewById(R.id.tv_allproduct);
+        tvXemThem = findViewById(R.id.tvXemthem);
         dbreference= FirebaseDatabase.getInstance().getReference("Products");
 
 

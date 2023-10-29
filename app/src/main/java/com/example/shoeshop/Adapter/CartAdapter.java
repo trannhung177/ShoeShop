@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.example.shoeshop.CartActivity;
 import com.example.shoeshop.Models.CartModel;
 import com.example.shoeshop.Models.ProductModel;
 import com.example.shoeshop.R;
@@ -41,7 +45,7 @@ public class CartAdapter extends BaseAdapter {
         return 0;
     }
 
-    @SuppressLint("CheckResult")
+    @SuppressLint({"CheckResult", "SetTextI18n", "DefaultLocale"})
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -53,16 +57,37 @@ public class CartAdapter extends BaseAdapter {
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView tvPrice = listItemView.findViewById(R.id.tvProductPrice);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         ImageView ivImg =  listItemView.findViewById(R.id.ivProductImg_MP);
+        EditText  edtQuantity = listItemView.findViewById(R.id.edtQuantityCart);
+        //CheckBox cbProduct = listItemView.findViewById(R.id.cbProductCart);
 
 
         CartModel cartModel = cartList.get(position);
 
         tvName.setText(cartModel.getProductName());
-        tvPrice.setText(String.format( cartModel.getPrice().toString()));
+        tvPrice.setText(String.format("%.0f", cartModel.getPrice()));
         Glide.with(mContext).load(cartModel.getProductImage())
                 .placeholder(R.drawable.baseline_image_24)
                 .error(R.drawable.baseline_image_24_2).into(ivImg);
-        ;
+        edtQuantity.setText(cartModel.getQuantity().toString());
+        // Gán onCheckedChangeListener cho CheckBox
+//        cbProduct.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                // Xử lý khi CheckBox thay đổi trạng thái
+//                // Ví dụ: cập nhật tổng tiền
+//                if (isChecked) {
+//                    // CheckBox được chọn, thực hiện cập nhật tổng tiền
+//                    // Ví dụ: cập nhật tổng tiền khi sản phẩm được chọn
+//                    cartModel.setCheckCart(true);
+//
+//                } else {
+//                    // CheckBox không được chọn, thực hiện cập nhật tổng tiền
+//                    // Ví dụ: cập nhật tổng tiền khi sản phẩm bị bỏ chọn
+//                    cartModel.setCheckCart(true);
+//                }
+//            }
+//        });
+
 
 
         return listItemView;

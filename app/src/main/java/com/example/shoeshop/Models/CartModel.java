@@ -6,20 +6,30 @@ import java.io.Serializable;
 
 public class CartModel implements Serializable {
     private String Id, UserId, ProductId, ProductName, ProductImage;
-    private Float Price;
+    private Double Price;
     private Integer Quantity;
+    private boolean IsCheckCart;
 
     public CartModel() {
     }
 
-    public CartModel(String id, String userId, String productId, String productName, String productImage, Float price, Integer quantity) {
+    public CartModel(String id, String userId, String productId, String productName, String productImage, Double price, Integer productQuantity, Boolean isCheckCart) {
         Id = id;
         UserId = userId;
         ProductId = productId;
         Price = price;
-        Quantity = quantity;
+        Quantity = productQuantity;
         ProductName = productName;
         ProductImage = productImage;
+        IsCheckCart = isCheckCart;
+    }
+
+    public boolean isCheckCart() {
+        return IsCheckCart;
+    }
+
+    public void setCheckCart(boolean checkCart) {
+        IsCheckCart = checkCart;
     }
 
     public String getProductName() {
@@ -62,11 +72,11 @@ public class CartModel implements Serializable {
         ProductId = productId;
     }
 
-    public Float getPrice() {
+    public Double getPrice() {
         return Price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(Double price) {
         Price = price;
     }
 

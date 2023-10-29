@@ -9,6 +9,7 @@
 
     <EditText
         android:id="@+id/edtFullname"
+        android:padding="10dp"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="300dp"
@@ -29,6 +30,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/border_edittext"
         android:ems="10"
+        android:padding="10dp"
         android:hint="\tNhập email..."
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,6 +62,7 @@
         android:ems="10"
         android:hint="\t Nhập mật khẩu..."
         android:inputType="textPassword"
+        android:padding="10dp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
