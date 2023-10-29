@@ -43,6 +43,10 @@ public class SignInWithEmailActivity extends AppCompatActivity {
         Mapping();
 
         auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+//        if (!user.getUid().isEmpty()){
+//                auth.signOut();
+//        }
         progressDialog = new ProgressDialog(SignInWithEmailActivity.this);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {

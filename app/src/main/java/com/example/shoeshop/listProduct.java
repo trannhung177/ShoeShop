@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.example.shoeshop.Adapter.ProductAdapter;
 import com.example.shoeshop.Adapter.ProductItemAdapter;
 import com.example.shoeshop.Models.ProductModel;
-import com.example.shoeshop.Models.UserModel;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,21 +30,23 @@ import java.util.ArrayList;
 
 public class listProduct extends AppCompatActivity {
     RecyclerView recyclerView;
-    DatabaseReference dbreference, dbUser;
+    DatabaseReference dbreference;
     //ProductItemAdapter adepter;
     ProductAdapter adapter, adapterAdidas, adapterNike, adapterBalen;
     ArrayList<ProductModel> list, lstAdidas, lstNike,lstBalen;
-    ArrayList<UserModel> lstUser;
     GridView gridView;
+    TextView tv_brandNike, tv_brandAdidas, tv_brandBalen;
+
     ImageView homeicon;
-    TextView tv_brandAdidas, tv_brandNike, tv_brandBalen;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_product);
         homeicon = findViewById(R.id.imgHomeP);
+        gridView = findViewById(R.id.recycleviewProduct);
         anhxa();
+
 
         homeicon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,7 +209,6 @@ public class listProduct extends AppCompatActivity {
         tv_brandAdidas=findViewById(R.id.tv_brandAdidas);
         tv_brandNike=findViewById(R.id.tv_brandNike);
         tv_brandBalen=findViewById(R.id.tv_brandBalen);
-        gridView= findViewById(R.id.recycleviewProduct);
     }
     public void dataA(){
         lstAdidas = new ArrayList<>();

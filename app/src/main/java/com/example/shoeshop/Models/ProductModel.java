@@ -5,11 +5,11 @@ import java.io.Serializable;
 public class ProductModel implements Serializable {
     public String id, productName, productBrand, productDescription, productImage;
     public Integer productQuantity;
-    public Float productPrice;
+    public Double productPrice;
 
     public ProductModel() {
     }
-    public ProductModel(String productId, String productName, String productBrand, String productDescription, Integer productQuantity, Float productPrice, String productImage) {
+    public ProductModel(String productId, String productName, String productBrand, String productDescription, Integer productQuantity, Double productPrice, String productImage) {
         this.productName = productName;
         this.productBrand = productBrand;
         this.productDescription = productDescription;
@@ -67,11 +67,11 @@ public class ProductModel implements Serializable {
         this.productQuantity = productQuantity;
     }
 
-    public Float getProductPrice() {
+    public Double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(Float productPrice) {
+    public void setProductPrice(Double productPrice) {
         this.productPrice = productPrice;
     }
 }

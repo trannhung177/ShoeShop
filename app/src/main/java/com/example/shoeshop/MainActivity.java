@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.example.shoeshop.Adapter.ProductAdapter;
 import com.example.shoeshop.Models.ProductModel;
-import com.example.shoeshop.Models.UserModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,13 +27,12 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private EditText edt_search;
     private ImageView img_cart;
-    private TextView tv_allproduct;
+    private TextView tv_allproduct,tvXemThem;
     private ImageView img_homeicon, img_seachicon, img_likeicon, img_profileicon;
     private GridView gridView;
-    private DatabaseReference dbreference, dbUser;
+    private DatabaseReference dbreference;
     private ProductAdapter adapter;
     private ArrayList<ProductModel> list;
-    private ArrayList<UserModel> lstUser;
     Intent i;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -42,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv_allproduct= findViewById(R.id.tv_allproduct);
         //anh xa view
         anhxa();
         //tim kiem
@@ -60,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(itcart);
             }
         });
+        img_profileicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         tv_allproduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,14 +70,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intallprd);
             }
         });
-        img_profileicon.setOnClickListener(new View.OnClickListener() {
+        tvXemThem.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                i=new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(i);
+            public void onClick(View v) {
+                Intent intallprd =new Intent(MainActivity.this, listProduct.class);
+                startActivity(intallprd);
             }
         });
-
 
     }
 
@@ -86,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
         img_likeicon= findViewById(R.id.iv_likeicon);
         img_profileicon= findViewById(R.id.iv_profileicon);
         gridView=findViewById(R.id.ProductSuggest);
+        tv_allproduct = findViewById(R.id.tv_allproduct);
+        tvXemThem = findViewById(R.id.tvXemthem);
         dbreference= FirebaseDatabase.getInstance().getReference("Products");
 
 

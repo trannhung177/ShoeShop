@@ -6,37 +6,83 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
+<!--    <CheckBox-->
+<!--        android:id="@+id/cbProductCart"-->
+<!--        android:layout_width="20dp"-->
+<!--        android:layout_height="20dp"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="28dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
     <ImageView
         android:id="@+id/ivProductImg_MP"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="4dp"
         android:src="@drawable/add_picture"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"></ImageView>
+
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="4dp">
+
+    </ImageView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="đ"
+        android:textColor="#CA1414"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/tvProductPrice"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductName"
+        tools:ignore="MissingConstraints">
+
+    </TextView>
 
     <TextView
         android:id="@+id/tvProductPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-
+        android:textStyle="bold"
         android:text="product_price"
+        android:textColor="#CA1414"
         app:layout_constraintStart_toEndOf="@+id/ivProductImg_MP"
         app:layout_constraintTop_toBottomOf="@+id/tvProductName"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tvProductName"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="product_name"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.023"
         app:layout_constraintStart_toEndOf="@+id/ivProductImg_MP"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="4dp" />
+
+    <EditText
+        android:id="@+id/edtQuantityCart"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="50dp"
+        android:background="@android:color/darker_gray"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvProductName"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="4dp" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

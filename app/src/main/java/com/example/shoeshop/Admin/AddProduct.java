@@ -107,7 +107,7 @@ public class AddProduct extends AppCompatActivity {
         String productName = edtProductName.getText().toString();
         String productBrand =  edtProductBrand.getText().toString();
         String productDescription = edtProductDescription.getText().toString();
-        Float productPrice = Float.parseFloat(edtProductPrice.getText().toString().trim());
+        Double productPrice = Double.parseDouble(edtProductPrice.getText().toString().trim());
         Integer productQuantity =  Integer.parseInt(edtProductQuantity.getText().toString().trim());
         if( productName.isEmpty() || productBrand.isEmpty() || productDescription.isEmpty()
             || productPrice.toString().isEmpty() || productQuantity.toString().isEmpty()){

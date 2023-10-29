@@ -34,8 +34,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        >
         <TextView
             android:id="@+id/tv_brandAdidas"
             android:layout_width="90dp"
@@ -43,7 +44,8 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="19dp"
             android:layout_alignParentTop="true"
-            android:text="Adidas"
+            android:layout_marginTop="27dp"
+            android:text="Adidas "
             android:textSize="14dp"
             android:textAlignment="center"
             android:background="@drawable/rectangle_4"
@@ -55,6 +57,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="19dp"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="27dp"
             android:text="Nike"
             android:textSize="14dp"
             android:textAlignment="center"
@@ -67,12 +70,14 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="19dp"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="27dp"
             android:text="Balenciaga"
             android:textSize="14dp"
             android:textAlignment="center"
             android:background="@drawable/rectangle_4"
             />
     </LinearLayout>
+
 
     <GridView
         android:id="@+id/recycleviewProduct"

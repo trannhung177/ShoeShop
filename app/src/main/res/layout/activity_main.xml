@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
         android:orientation="horizontal">
         <EditText
             android:id="@+id/edt_search"
@@ -51,10 +52,11 @@
             android:layout_width="390dp"
             android:layout_height="125dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="35dp"
             android:layout_alignParentTop="true"
             android:layout_marginTop="15dp"
-            android:background="@drawable/rectangle_8"
+
+            android:background="@drawable/sale"
             />
     </LinearLayout>
     <LinearLayout
@@ -76,13 +78,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginLeft="35dp"
         android:layout_marginTop="15dp">
         <TextView
             android:id="@+id/tv_allproduct"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="22dp"
+            android:layout_marginLeft="5dp"
 
             android:text="Tất cả"
             android:gravity="bottom"
@@ -94,21 +97,25 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="22dp"
             android:gravity="bottom"
+            android:background="@drawable/adidas"
             />
+
         <TextView
             android:id="@+id/tv_converseBrand"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="22dp"
-            android:gravity="bottom"
-            />
+            android:background="@drawable/images"
+            android:gravity="bottom" />
 
         <TextView
             android:id="@+id/tv_balenciagaBrand"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="22dp"
+            android:background="@drawable/balen"
             android:gravity="bottom" />
 
 
@@ -130,6 +137,7 @@
 
             />
         <TextView
+            android:id="@+id/tvXemthem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Xem thêm >>"
@@ -145,7 +153,7 @@
         android:id="@+id/ProductSuggest"
         android:layout_width="394dp"
         android:layout_height="215dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="35dp"
         android:layout_marginTop="20dp"
         android:numColumns="3" />
 <!--    <LinearLayout-->
