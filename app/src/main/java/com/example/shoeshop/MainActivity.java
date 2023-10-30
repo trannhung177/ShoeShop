@@ -26,9 +26,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private EditText edt_search;
-    private ImageView img_cart;
+    private ImageView ivCart, ivSearch;
     private TextView tv_allproduct,tvXemThem;
-    private ImageView img_homeicon, img_seachicon, img_likeicon, img_profileicon;
+    private ImageView img_homeicon, ivListProduct, ivCartIcon, img_profileicon;
     private GridView gridView;
     private DatabaseReference dbreference;
     private ProductAdapter adapter;
@@ -42,25 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
         //anh xa view
         anhxa();
-        //tim kiem
-//        edt_search.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                i=new Intent(MainActivity.this,search_product.class);
-//                startActivity(i);
-//            }
-//        });
-        img_cart.setOnClickListener(new View.OnClickListener() {
+        ivCartIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent itcart = new Intent(MainActivity.this, CartActivity.class);
                 startActivity(itcart);
-            }
-        });
-        img_profileicon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
             }
         });
         tv_allproduct.setOnClickListener(new View.OnClickListener() {
@@ -84,16 +70,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        ivListProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i  = new Intent(MainActivity.this, listProduct.class);
+                startActivity(i);
+            }
+        });
 
     }
 
     private void anhxa(){
         edt_search=findViewById(R.id.edt_search);
-        img_cart= findViewById(R.id.iv_cart);
+        ivSearch = findViewById(R.id.ivSearchIcon);
+
+
         img_homeicon= findViewById(R.id.iv_homeicon);
-        img_seachicon = findViewById(R.id.iv_searchicon);
-        img_likeicon= findViewById(R.id.iv_likeicon);
-        img_profileicon= findViewById(R.id.iv_profileicon);
+        ivListProduct = findViewById(R.id.ivListProduct);
+        ivCartIcon= findViewById(R.id.ivCartHome);
+        img_profileicon= findViewById(R.id.ivProfileHome);
+
         gridView=findViewById(R.id.ProductSuggest);
         tv_allproduct = findViewById(R.id.tv_allproduct);
         tvXemThem = findViewById(R.id.tvXemthem);
@@ -111,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     ProductModel productModel= dataSnapshot.getValue(ProductModel.class);
                     list.add(productModel);
-
                 }
                 adapter.notifyDataSetChanged();
 
@@ -119,10 +114,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-
 
                 //click item
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -2,15 +2,18 @@ package com.example.shoeshop.Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +21,6 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.example.shoeshop.CartActivity;
 import com.example.shoeshop.Models.CartModel;
-import com.example.shoeshop.Models.ProductModel;
 import com.example.shoeshop.R;
 
 import java.util.List;
@@ -51,14 +53,14 @@ public class CartAdapter extends BaseAdapter {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = mContext.getLayoutInflater();
-        View listItemView = inflater.inflate(R.layout.item_product,null,true);
+        View listItemView = inflater.inflate(R.layout.cart_product,null,true);
 
         TextView tvName = listItemView.findViewById(R.id.tvProductName);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView tvProductSize = listItemView.findViewById(R.id.tvCartSize);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView tvPrice = listItemView.findViewById(R.id.tvProductPrice);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         ImageView ivImg =  listItemView.findViewById(R.id.ivProductImg_MP);
         EditText  edtQuantity = listItemView.findViewById(R.id.edtQuantityCart);
-        //CheckBox cbProduct = listItemView.findViewById(R.id.cbProductCart);
 
 
         CartModel cartModel = cartList.get(position);
@@ -69,26 +71,51 @@ public class CartAdapter extends BaseAdapter {
                 .placeholder(R.drawable.baseline_image_24)
                 .error(R.drawable.baseline_image_24_2).into(ivImg);
         edtQuantity.setText(cartModel.getQuantity().toString());
-        // Gán onCheckedChangeListener cho CheckBox
-//        cbProduct.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                // Xử lý khi CheckBox thay đổi trạng thái
-//                // Ví dụ: cập nhật tổng tiền
-//                if (isChecked) {
-//                    // CheckBox được chọn, thực hiện cập nhật tổng tiền
-//                    // Ví dụ: cập nhật tổng tiền khi sản phẩm được chọn
-//                    cartModel.setCheckCart(true);
-//
-//                } else {
-//                    // CheckBox không được chọn, thực hiện cập nhật tổng tiền
-//                    // Ví dụ: cập nhật tổng tiền khi sản phẩm bị bỏ chọn
-//                    cartModel.setCheckCart(true);
-//                }
-//            }
-//        });
+        tvProductSize.setText(cartModel.getSize().toString());
+        listItemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                // Gọi phương thức xóa sản phẩm của CartActivity và truyền dữ liệu sản phẩm được long click
+                ((CartActivity) mContext).Delete(cartModel);
+                // Trả về true để chỉ xử lý sự kiện long click mà không gọi sự kiện click thông thường
+                return true;
+            }
+        });
 
+        //thay đổi số lượng
+        edtQuantity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() == 0) {
+                    // Xử lý khi người dùng xóa hết dữ liệu ở đây
+                    // Ví dụ: Thiết lập số lượng mặc định hoặc thông báo lỗi
+                    int newQuantity = 1;
+                    cartModel.setQuantity(1);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    int newQuantity = Integer.parseInt(editable.toString());
+                    if(newQuantity <= 0){
+                        newQuantity = 1;
+                    }
+                    else {
+                        cartModel.setQuantity(newQuantity);
+                    }
+
+                }catch (NumberFormatException e){
+
+                }
+            }
+        });
 
         return listItemView;
     }

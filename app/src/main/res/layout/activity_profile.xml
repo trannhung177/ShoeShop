@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:text="Tài khoản"
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:textSize="25dp"
             android:layout_marginLeft="150dp"
             />
@@ -51,6 +52,7 @@
                 android:id="@+id/tv_nameProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="Họ tên" />
             <TextView
                 android:id="@+id/tv_emailProfile"
@@ -77,11 +79,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Giỏ hàng"
+            android:paddingLeft="10dp"
             android:textSize="18dp"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"/>
         <TextView
+            android:id="@+id/tvCountProductOfUser"
+            android:paddingLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Đã có 3 sản phẩm"
@@ -90,6 +95,7 @@
             android:layout_marginLeft="10dp"/>
     </RelativeLayout>
     <TextView
+        android:paddingLeft="10dp"
         android:id="@+id/tv_infoUser"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
@@ -102,12 +108,13 @@
         android:background="@drawable/template_user"
         />
     <TextView
-        android:id="@+id/tv_settingUser"
+        android:id="@+id/tvExit"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cài đặt"
+        android:text="Đăng xuất"
+        android:paddingLeft="10dp"
         android:textSize="18dp"
         android:textColor="@color/black"
         android:gravity="center|left"
@@ -132,27 +139,28 @@
             android:src="@drawable/home_icon" />
 
         <ImageView
-            android:id="@+id/iv_searchiconPr"
+            android:id="@+id/ivListProductProfile"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:layout_marginLeft="55dp"
-            android:src="@drawable/search_icon" />
-
+            android:layout_alignParentTop="true"
+            android:src="@drawable/category"
+            />
         <ImageView
-            android:id="@+id/iv_likeiconPr"
+            android:id="@+id/img_cart"
             android:layout_width="40dp"
             android:layout_height="40dp"
+
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:layout_marginLeft="55dp"
-            android:src="@drawable/bookmark_icon" />
+            android:src="@drawable/cart_icon"/>
 
         <ImageView
             android:id="@+id/iv_profileiconPr"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:background="@color/focus"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="55dp"

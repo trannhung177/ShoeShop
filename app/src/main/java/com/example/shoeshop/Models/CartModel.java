@@ -8,12 +8,22 @@ public class CartModel implements Serializable {
     private String Id, UserId, ProductId, ProductName, ProductImage;
     private Double Price;
     private Integer Quantity;
+    private Integer Size;
     private boolean IsCheckCart;
 
     public CartModel() {
     }
 
-    public CartModel(String id, String userId, String productId, String productName, String productImage, Double price, Integer productQuantity, Boolean isCheckCart) {
+    public Integer getSize() {
+        return Size;
+    }
+
+    public void setSize(Integer size) {
+        Size = size;
+    }
+
+    public CartModel(String id, String userId, String productId, String productName,
+                     String productImage, Double price, Integer productQuantity, Boolean isCheckCart, Integer size) {
         Id = id;
         UserId = userId;
         ProductId = productId;
@@ -22,6 +32,7 @@ public class CartModel implements Serializable {
         ProductName = productName;
         ProductImage = productImage;
         IsCheckCart = isCheckCart;
+        Size = size;
     }
 
     public boolean isCheckCart() {

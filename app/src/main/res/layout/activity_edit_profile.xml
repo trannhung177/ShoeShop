@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EditProfileActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thông tin cá nhân"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_marginLeft="130dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/baseline_logout_24"
+            android:textSize="18dp"
+            android:layout_marginLeft="100dp"
+            />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp">
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Họ tên"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"/>
+        <EditText
+            android:id="@+id/edtFullNameProfile"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:hint="Your name"
+            android:textSize="14dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginLeft="10dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Số điện thoại"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"/>
+        <EditText
+            android:id="@+id/edtPhoneProfile"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:hint="Your phone"
+            android:textSize="14dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginLeft="10dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Địa chỉ"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"/>
+        <EditText
+            android:id="@+id/edtAdrressProfile"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Your address"
+            android:padding="10dp"
+            android:textSize="14dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginLeft="10dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Mật khẩu cũ"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+        <EditText
+            android:id="@+id/edtOldPassword"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="Your old password"
+            android:textSize="14dp"
+            android:padding="10dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginLeft="10dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Mật khẩu mới"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+        <EditText
+            android:id="@+id/edtNewPassword"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="Your new password"
+            android:textSize="14dp"
+            android:padding="10dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginLeft="10dp"/>
+    </RelativeLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/btnSaveProfile"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="132dp"
+                android:layout_marginTop="40dp"
+                android:background="@color/teal_200"
+                android:padding="10dp"
+                android:text="Lưu"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/btnCancel"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="40dp"
+                android:background="@color/design_default_color_error"
+                android:padding="10dp"
+                android:text="Hủy bỏ"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnSaveProfile"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    <Button-->
+<!--        android:id="@+id/btnCancel"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:background="@color/material_dynamic_neutral60"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="Hủy bỏ"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/white" />-->
+
+
+</LinearLayout>

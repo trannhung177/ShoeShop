@@ -23,13 +23,13 @@
             android:background="@drawable/rectangle_4"
             />
         <ImageView
-            android:id="@+id/iv_cart"
+            android:id="@+id/ivSearchIcon"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="25dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="25dp"
-            android:src="@drawable/cart_icon"/>
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/search_icon"/>
+
 
     </LinearLayout>
     <LinearLayout
@@ -179,29 +179,29 @@
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-
+            android:background="@color/focus"
             android:src="@drawable/home_icon" />
 
         <ImageView
-            android:id="@+id/iv_searchicon"
+            android:id="@+id/ivListProduct"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:layout_marginLeft="55dp"
-            android:src="@drawable/search_icon" />
+            android:layout_alignParentTop="true"
+            android:src="@drawable/category"
+            />
 
         <ImageView
-            android:id="@+id/iv_likeicon"
+            android:id="@+id/ivCartHome"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:layout_marginLeft="55dp"
-            android:src="@drawable/bookmark_icon" />
+            android:src="@drawable/cart_icon"/>
 
         <ImageView
-            android:id="@+id/iv_profileicon"
+            android:id="@+id/ivProfileHome"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"

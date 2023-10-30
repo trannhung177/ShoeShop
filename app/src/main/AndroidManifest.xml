@@ -16,7 +16,7 @@
 
             android:name=".MainActivity"
 
-            android:exported="false">
+            android:exported="true">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
@@ -41,13 +41,24 @@
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
         </activity>
+        <activity android:name=".ProfileActivity"
+            android:exported="false">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
 
         <activity
             android:name=".Admin.AddProduct"
 
             android:exported="false">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".search_product"/>
         <activity android:name=".ProductDetailActivity"
@@ -70,7 +81,7 @@
                         </intent-filter>
         </activity>
         <activity android:name=".demo.ForgotPasswordActivity"/>
-
+        <activity android:name=".EditProfileActivity"/>
 
     </application>
 

@@ -25,7 +25,7 @@ public class ProductSimpleAdapter extends ArrayAdapter {
     List<ProductModel> productsList;
 
     public ProductSimpleAdapter(Activity mContext, List<ProductModel> productsList){
-        super(mContext, R.layout.item_product,productsList);
+        super(mContext, R.layout.cart_product,productsList);
         this.mContext = mContext;
         this.productsList = productsList;
     }
@@ -35,7 +35,7 @@ public class ProductSimpleAdapter extends ArrayAdapter {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = mContext.getLayoutInflater();
-        View listItemView = inflater.inflate(R.layout.item_product,null,true);
+        View listItemView = inflater.inflate(R.layout.cart_product,null,true);
 
         TextView tvName = listItemView.findViewById(R.id.tvProductName);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView tvPrice = listItemView.findViewById(R.id.tvProductPrice);

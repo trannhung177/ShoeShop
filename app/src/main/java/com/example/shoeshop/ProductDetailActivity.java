@@ -1,31 +1,25 @@
 package com.example.shoeshop;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.shoeshop.Admin.AddProduct;
 import com.example.shoeshop.Models.CartModel;
 import com.example.shoeshop.Models.ProductModel;
 import com.example.shoeshop.demo.SignInWithEmailActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,21 +30,50 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProductDetailActivity extends AppCompatActivity {
-    private TextView iconBack, tvAddToCart, tvBuyNow;
+    private TextView tvBackToHome, tvAddToCart, tvBuyNow;
     TextView AddToCart;
     private EditText edtSearch;
-    private ImageView imgProduct, ivCart;
+    private ImageView imgProduct, ivSearch;
     private TextView ProductName,ProductPrice,ProductQuantity, ProductDescrip;
     private DatabaseReference dbreference, CartdbReference;
     Intent i;
     Spinner spinSize;
+    List<String> spinnerList;
+    String iSelected = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_item);
        anhxa();
        ProductDetail();
+
+
+       // đổ dữ liệu lên dropdown và
+        spinnerList = new ArrayList<>();
+        spinnerList.add("39");
+        spinnerList.add("40");
+        spinnerList.add("41");
+        spinnerList.add("42");
+        spinnerList.add("43");
+
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item, spinnerList);
+        spinSize.setAdapter(spinnerAdapter);
+        spinSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                iSelected = spinnerList.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                iSelected = "39";
+            }
+        });
        AddToCart.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -58,78 +81,35 @@ public class ProductDetailActivity extends AppCompatActivity {
 
            }
        });
-
-       ivCart.setOnClickListener(new View.OnClickListener() {
+       tvBackToHome.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               // Kiểm tra xem người dùng đã đăng nhập hay chưa
-               FirebaseAuth mAuth = FirebaseAuth.getInstance();
-               FirebaseUser user = mAuth.getCurrentUser();
-               Toast.makeText(ProductDetailActivity.this, user.getUid(), Toast.LENGTH_SHORT).show();
-               if (user.getUid().isEmpty()){
-
-                   Intent i = new Intent(ProductDetailActivity.this, SignInWithEmailActivity.class);
-                   startActivity(i);
-                   finish();
-               }
-               Intent intent = new Intent(ProductDetailActivity.this, CartActivity.class);
-               startActivity(intent);
+               i = new Intent(ProductDetailActivity.this, MainActivity.class);
+               startActivity(i);
+               finish();
            }
        });
 
-
-
+       ivSearch.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+//               // Kiểm tra xem người dùng đã đăng nhập hay chưa
+//               FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//               FirebaseUser user = mAuth.getCurrentUser();
+//               Toast.makeText(ProductDetailActivity.this, user.getUid(), Toast.LENGTH_SHORT).show();
+//               if (user.getUid().isEmpty()){
+//
+//                   Intent i = new Intent(ProductDetailActivity.this, SignInWithEmailActivity.class);
+//                   startActivity(i);
+//                   finish();
+//               }
+               Intent intent = new Intent(ProductDetailActivity.this, listProduct.class);
+               startActivity(intent);
+           }
+       });
     }
 
-//    private void AddToCart() {
-//        // Kiểm tra xem người dùng đã đăng nhập hay chưa
-//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-//        FirebaseUser user = mAuth.getCurrentUser();
-//        Intent intent = getIntent();
-//        if (intent != null) {
-//            String productId = intent.getStringExtra("id");
-//            Double productPrice = Double.parseDouble(ProductPrice.getText().toString());
-//            Integer productQuantity =1 ;
-//            Boolean isCheckedCart = false;
-//            String productImg = img;
-//            String productName = ProductName.getText().toString();
-//            if(productId != null && user != null){
-//                CartdbReference = FirebaseDatabase.getInstance().getReference("Carts");
-//
-//
-//                // Kiểm tra xem sản phẩm có sẵn trong giỏ hàng của người dùng hiện tại hay không
-//                Query query = CartdbReference.orderByChild("productId").equalTo(productId);
-//                query.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-//                String cartId = CartdbReference.push().getKey();
-//                CartModel cartItem = new CartModel(cartId, user.getUid(), productId,productName,productImg,  productPrice, productQuantity, isCheckedCart);
-//                if ( cartId != null){
-//                    CartdbReference.child(cartId).setValue(cartItem).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                        @Override
-//                        public void onSuccess(Void unused) {
-//                            Toast.makeText(ProductDetailActivity.this, "Thêm giỏ hàng thành công", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                }
-//            } else if (user == null) {
-//                Intent i = new Intent(ProductDetailActivity.this, SignInWithEmailActivity.class);
-//                startActivity(i);
-//
-//            } else {
-//                Intent i = new Intent(ProductDetailActivity.this, SignInWithEmailActivity.class);
-//                startActivity(i);
-//            }
-//        }
-//    }
+    // Thêm vào giỏ hàng
 private void AddToCart() {
     // Kiểm tra xem người dùng đã đăng nhập hay chưa
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -143,6 +123,8 @@ private void AddToCart() {
         Boolean isCheckedCart = false;
         String productImg = img;
         String productName = ProductName.getText().toString();
+        Integer size = Integer.parseInt(iSelected);
+
 
         CartdbReference = FirebaseDatabase.getInstance().getReference("Carts");
 
@@ -151,10 +133,11 @@ private void AddToCart() {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean productFound = false; // Biến để kiểm tra xem sản phẩm đã tồn tại trong giỏ hay chưa
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         CartModel cartItem = snapshot.getValue(CartModel.class);
-                        if (cartItem != null && cartItem.getProductId().equals(productId)) {
+                        if (cartItem != null && cartItem.getProductId().equals(productId) && cartItem.getSize() == size) {
                             // Sản phẩm đã tồn tại trong giỏ hàng của người dùng hiện tại, cập nhật số lượng
                             int updatedQuantity = cartItem.getQuantity() + productQuantity;
                             snapshot.getRef().child("quantity").setValue(updatedQuantity)
@@ -164,20 +147,24 @@ private void AddToCart() {
                                             Toast.makeText(ProductDetailActivity.this, "Cập nhật giỏ hàng thành công", Toast.LENGTH_SHORT).show();
                                         }
                                     });
+                            productFound = true;
+                            break; // Dừng vòng lặp khi tìm thấy sản phẩm
                         }
-                        else {
-                            // Sản phẩm chưa tồn tại  trong giỏ hàng của người dùng hiện tại, tạo mục mới
-                            String cartId = CartdbReference.push().getKey();
-                            CartModel cartItem1 = new CartModel(cartId, user.getUid(), productId, productName, productImg, productPrice, productQuantity, false);
-                            if (cartId != null) {
-                                CartdbReference.child(cartId).setValue(cartItem1).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        Toast.makeText(ProductDetailActivity.this, "Thêm giỏ hàng thành công", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+
+                    }
+                }
+                if(!productFound) {
+                    // Sản phẩm chưa tồn tại  trong giỏ hàng của người dùng hiện tại, tạo mục mới
+                    String cartId = CartdbReference.push().getKey();
+                    CartModel cartItem1 = new CartModel(cartId, user.getUid(),
+                            productId, productName, productImg, productPrice, productQuantity, false, size);
+                    if (cartId != null) {
+                        CartdbReference.child(cartId).setValue(cartItem1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(ProductDetailActivity.this, "Thêm giỏ hàng thành công", Toast.LENGTH_SHORT).show();
                             }
-                        }
+                        });
                     }
                 }
             }
@@ -197,6 +184,7 @@ private void AddToCart() {
 }
 
 
+// Chi tiết sản phẩm
     String img = "";
     private void ProductDetail(){
         dbreference= FirebaseDatabase.getInstance().getReference("Products");
@@ -217,6 +205,7 @@ private void AddToCart() {
                             ProductName.setText(product.getProductName());
                             ProductPrice.setText(product.getProductPrice().toString());
                             ProductDescrip.setText(product.getProductDescription());
+
                         }
 
                         @Override
@@ -231,14 +220,16 @@ private void AddToCart() {
             Log.d("log", "ID");
         }
     }
-    private void anhxa(){
 
+
+    private void anhxa(){
         imgProduct= findViewById(R.id.imgProductDetail);// nghi nhất cái này
         ProductName=findViewById(R.id.ProductDetailName);
         ProductPrice= findViewById(R.id.ProductDetailPrice);
         ProductDescrip=findViewById(R.id.ProductDetailDescrip);
         AddToCart = findViewById(R.id.tvAddtoCart);
-        ivCart = findViewById(R.id.ivCart);
+        ivSearch = findViewById(R.id.ivSearchInDetail);
         spinSize = findViewById(R.id.spinSize);
+        tvBackToHome = findViewById(R.id.tvBack);
     }
 }

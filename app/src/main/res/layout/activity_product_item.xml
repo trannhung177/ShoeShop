@@ -12,7 +12,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/txtBack"
+            android:id="@+id/tvBack"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_alignParentLeft="true"
@@ -34,14 +34,12 @@
             android:background="@drawable/rectangle_4"
             />
         <ImageView
-            android:id="@+id/ivCart"
+            android:id="@+id/ivSearchInDetail"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="25dp"
-
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/cart_icon"/>
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/search_icon"/>
     </LinearLayout>
     
     <ImageView
@@ -53,6 +51,7 @@
         android:src="@drawable/baseline_image_24"
         />
     <TextView
+        android:textStyle="bold"
         android:id="@+id/ProductDetailName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,9 +79,20 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:gravity="top"
+            android:textStyle="bold"
             android:text="1,000,000"
             android:textColor="#ED1D0D"
             android:textSize="19dp" />
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="đ"
+            android:textSize="18dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="#ED1D0D" />
+
         <Spinner
             android:id="@+id/spinSize"
             android:layout_width="150dp"
@@ -118,14 +128,14 @@
 <!--            android:textSize="17dp"-->
 <!--            />-->
 <!--        <TextView-->
-<!--            android:id="@+id/ProductSold"-->
+<!--            android:id="@+id/tvAvailableProduct"-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
 <!--            android:layout_alignParentLeft="true"-->
 <!--            android:layout_marginLeft="15dp"-->
 <!--            android:layout_alignParentTop="true"-->
 <!--            android:layout_marginTop="14dp"-->
-<!--            android:text="29 đã bán"-->
+<!--            android:text="29"-->
 <!--            android:textColor="@color/black"-->
 <!--            android:textSize="17dp"-->
 <!--            />-->

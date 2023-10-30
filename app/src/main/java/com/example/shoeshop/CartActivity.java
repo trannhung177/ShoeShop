@@ -4,15 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +28,8 @@ import com.example.shoeshop.Adapter.ProductAdapter;
 import com.example.shoeshop.Models.CartModel;
 import com.example.shoeshop.Models.ProductModel;
 import com.example.shoeshop.demo.SignInWithEmailActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,15 +43,16 @@ import java.util.ArrayList;
 public class CartActivity extends AppCompatActivity {
     Intent i;
     private EditText edt_search;
-    private ImageView img_homeicon, img_seachicon, img_likeicon, img_profileicon, img_cart;
+    private ImageView ivHome,ivListProduct, ivProfile, ivSearchCart, ivDeleteProduct;
     private TextView tv_payment, tvTotal;
     private DatabaseReference dbreference;
     private CartAdapter adapter;
     private ArrayList<CartModel> list;
-    private GridView gridView;
+    private ListView gridView;
     CheckBox cbProduct;
     Double totalPrice = 0.0;
     CheckBox cbSelectAll;
+    Button btnUpdateCart;
 
 
     @Override
@@ -51,38 +60,58 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
+
         anhxa();
         ShowCart();
-        //SelectAll();
-        img_homeicon.setOnClickListener(new View.OnClickListener() {
+        ivHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(CartActivity.this, MainActivity.class);
                 startActivity(i);
             }
         });
-//        rbSelectAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//
-//            }
-//        });
+        btnUpdateCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UpdateQuantity();
+            }
+        });
+        ivListProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CartActivity.this, listProduct.class);
+                startActivity(i);
+            }
+        });
+        ivProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CartActivity.this, ProfileActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
+    private void UpdateQuantity() {
+        DatabaseReference cartReference = FirebaseDatabase.getInstance().getReference("Carts");
 
+        for (CartModel cartItem : list) {
+            cartReference.child(cartItem.getId()).child("quantity").setValue(cartItem.getQuantity());
+        }
+    }
 
     private void anhxa() {
-        //edt_search=findViewById(R.id.edt_searchC);
-        //img_cart= findViewById(R.id.iv_cart);
+
         gridView = findViewById(R.id.gvListCart);
-        //tv_allproduct= findViewById(R.id.tv_allproduct);
-        img_homeicon = findViewById(R.id.img_home);
-        //cbProduct = findViewById(R.id.cbProductCart);
+        ivListProduct = findViewById(R.id.ivListProductInCart);
+        ivHome = findViewById(R.id.img_home);
         tvTotal = findViewById(R.id.tvSumCartPrice);
         cbSelectAll = findViewById(R.id.cbSelectAll);
-//        img_seachicon = findViewById(R.id.img_search);
-//        img_likeicon= findViewById(R.id.img_like);
-//        img_profileicon= findViewById(R.id.img_profile);
+        btnUpdateCart = findViewById(R.id.btnUpdateCart);
+        ivSearchCart = findViewById(R.id.ivSearchCart);
+        ivProfile = findViewById(R.id.ivProfileCart);
+
 
     }
 
@@ -103,6 +132,7 @@ public class CartActivity extends AppCompatActivity {
             adapter = new CartAdapter(this, list);
             gridView.setAdapter(adapter);
 
+
             dbreference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -122,6 +152,9 @@ public class CartActivity extends AppCompatActivity {
                     Log.d("FAILED", error.getMessage());
                 }
             });
+           // Delete();
+
+
 
             //select all
             cbSelectAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -142,4 +175,47 @@ public class CartActivity extends AppCompatActivity {
         }
     }
 
+    int positionToRemove = -1;
+    public void Delete(CartModel cartModel) {
+         // Định vị trí sản phẩm cần xóa
+        for (int i = 0; i < list.size(); i++) {
+            CartModel item = list.get(i);
+            if (item.getId().equals(cartModel.getId())) {
+                positionToRemove = i;
+                break;
+            }
+        }
+        if (positionToRemove != -1) {
+            // Tạo hộp thoại thông báo chắc chắn xóa
+            AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
+            builder.setTitle("Xác nhận xóa");
+            builder.setMessage("Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng không?");
+
+            // Nút Xác nhận xóa
+            builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // Tìm thấy sản phẩm, tiến hành xóa
+                    list.remove(positionToRemove);
+                    // Cập nhật adapter để hiển thị thay đổi
+                    adapter.notifyDataSetChanged();
+                    // Cập nhật cơ sở dữ liệu Firebase để đồng bộ hóa thay đổi
+                    DatabaseReference cartReference = FirebaseDatabase.getInstance().getReference("Carts");
+                    cartReference.child(cartModel.getId()).removeValue();
+                }
+            });
+
+            // Nút Hủy
+            builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
+
+        } else {
+
+        }
+    }
 }
