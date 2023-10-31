@@ -65,7 +65,6 @@ public class search_product extends AppCompatActivity {
             if(item.getProductName().toLowerCase().contains(txt.toLowerCase())){
                 //them item vao filtrelst
                 ftArr.add(item);
-
                 //them vao mang
                 list.add(item);
             }

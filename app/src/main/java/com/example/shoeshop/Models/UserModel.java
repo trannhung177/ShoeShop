@@ -1,13 +1,31 @@
 package com.example.shoeshop.Models;
 
 public class UserModel {
-    String fullname, email, password, userType, id;
+    String fullname, email, password, userType, id, phone, address;
 
-    public UserModel(String fullname, String email, String password, String userType) {
+    public UserModel(String fullname, String email, String password, String userType, String phone, String address) {
         this.fullname = fullname;
         this.email = email;
         this.password = password;
         this.userType = userType;
+        this.phone = phone;
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getId() {

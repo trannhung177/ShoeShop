@@ -148,7 +148,7 @@
             android:src="@drawable/category"
             />
         <ImageView
-            android:id="@+id/img_cart"
+            android:id="@+id/ivCartInProfile"
             android:layout_width="40dp"
             android:layout_height="40dp"
 

@@ -27,6 +27,7 @@ import com.google.firebase.firestore.auth.User;
 public class EditProfileActivity extends AppCompatActivity {
     EditText edtFullName, edtPhone, edtAddress, edtOldPassword, edtNewPassword;
     TextView btnSaveProfile, btnCancel;
+    Intent i;
 
     DatabaseReference dbProfile;
     @Override
@@ -41,6 +42,13 @@ public class EditProfileActivity extends AppCompatActivity {
                 UpdateUser();
             }
         });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i = new Intent(EditProfileActivity.this, ProfileActivity.class);
+
+            }
+        });
     }
 
     private void UpdateUser() {
@@ -53,7 +61,7 @@ public class EditProfileActivity extends AppCompatActivity {
             String fullname = edtFullName.getText().toString();
             String address = edtAddress.getText().toString();
             String phone = edtPhone.getText().toString();
-            String password = edtNewPassword.getText().toString();
+            //String password = edtNewPassword.getText().toString();
             String oldpassword = edtOldPassword.getText().toString();
             // Xác thực người dùng bằng mật khẩu hiện tại
             mAuth.signInWithEmailAndPassword(user.getEmail(), oldpassword)
@@ -63,14 +71,22 @@ public class EditProfileActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 String userId = user.getUid();
                                 // Cập nhật mật khẩu nếu người dùng muốn thay đổi mật khẩu
-                                if (!password.isEmpty()) {
+//                                if (!password.isEmpty()) {
                                     // Mật khẩu đúng, cho phép cập nhật thông tin người dùng
-                                    UserModel userModel = new UserModel( fullname, user.getEmail(), password,"user", phone, address);
+                                    UserModel userModel = new UserModel( fullname, user.getEmail(), oldpassword,"user", phone, address);
                                     dbProfile.child(userId).setValue(userModel);
-                                }
+                                    Toast.makeText(EditProfileActivity.this, "Thay đổi thông tin thành công", Toast.LENGTH_SHORT).show();
+//                                }
+//                                else {
+//                                    // không thay đổi mật khẩu chỉ cập nhật dữ liệu
+//                                    UserModel userModel = new UserModel( fullname, user.getEmail(), oldpassword,"user", phone, address);
+//                                    dbProfile.child(userId).setValue(userModel);
+//                                    Toast.makeText(EditProfileActivity.this, "Cập nhật thông tin thành công\n" +
+//                                            "(Bạn không thay đổi mật khẩu)", Toast.LENGTH_SHORT).show();
+//                                }
 
                             } else {
-                                Toast.makeText(EditProfileActivity.this, "Mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EditProfileActivity.this, "Mật khẩu không đúng " + oldpassword, Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -113,7 +129,7 @@ public class EditProfileActivity extends AppCompatActivity {
         edtPhone = findViewById(R.id.edtPhoneProfile);
         edtAddress = findViewById(R.id.edtAdrressProfile);
         edtOldPassword = findViewById(R.id.edtOldPassword);
-        edtNewPassword = findViewById(R.id.edtNewPassword);
+        //edtNewPassword = findViewById(R.id.edtNewPassword);
 
         btnSaveProfile = findViewById(R.id.btnSaveProfile);
         btnCancel = findViewById(R.id.btnCancel);

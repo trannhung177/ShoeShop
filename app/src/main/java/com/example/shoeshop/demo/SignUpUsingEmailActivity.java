@@ -69,7 +69,9 @@ public class SignUpUsingEmailActivity extends AppCompatActivity {
                                 }
                                 else {
                                     String userType ="user";
-                                    UserModel user = new UserModel(fullname, email, password, userType);
+                                    String phone ="";
+                                    String address ="";
+                                    UserModel user = new UserModel(fullname, email, password, userType, phone, address);
                                     String id = task.getResult().getUser().getUid();
                                     db.getReference().child("Users").child(id).setValue(user);
                                     Toast.makeText(SignUpUsingEmailActivity.this, "Tạo mới thành công",
