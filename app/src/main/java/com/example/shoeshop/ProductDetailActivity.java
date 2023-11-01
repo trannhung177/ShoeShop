@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.shoeshop.Models.CartModel;
 import com.example.shoeshop.Models.ProductModel;
 import com.example.shoeshop.demo.SignInWithEmailActivity;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -93,18 +94,33 @@ public class ProductDetailActivity extends AppCompatActivity {
        ivSearch.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-//               // Kiểm tra xem người dùng đã đăng nhập hay chưa
-//               FirebaseAuth mAuth = FirebaseAuth.getInstance();
-//               FirebaseUser user = mAuth.getCurrentUser();
-//               Toast.makeText(ProductDetailActivity.this, user.getUid(), Toast.LENGTH_SHORT).show();
-//               if (user.getUid().isEmpty()){
-//
-//                   Intent i = new Intent(ProductDetailActivity.this, SignInWithEmailActivity.class);
-//                   startActivity(i);
-//                   finish();
-//               }
                Intent intent = new Intent(ProductDetailActivity.this, listProduct.class);
                startActivity(intent);
+           }
+       });
+
+       tvBuyNow.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               i = getIntent();
+               if( i != null){
+                   FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                   FirebaseUser user = mAuth.getCurrentUser();
+                   String productId = i.getStringExtra("id");
+                   String productName = ProductName.getText().toString();
+                   Double productPrice = Double.parseDouble(ProductPrice.getText().toString());
+                   Integer productQuantity = 1;
+                   Boolean isCheckedCart = false;
+                   String productImg = img;
+                   Integer size = Integer.parseInt(iSelected);
+                   CartModel cartModel = new CartModel("",user.getUid(),productId, productName, productImg,
+                                        productPrice, productQuantity,isCheckedCart, size);
+                   Intent intent = new Intent(ProductDetailActivity.this, PaymentActivity.class);
+                   intent.putExtra("cartModel", cartModel);
+                   intent.putExtra("isFromProductDetail", true);
+                   startActivity(intent);
+               }
+
            }
        });
     }
@@ -157,7 +173,7 @@ private void AddToCart() {
                     // Sản phẩm chưa tồn tại  trong giỏ hàng của người dùng hiện tại, tạo mục mới
                     String cartId = CartdbReference.push().getKey();
                     CartModel cartItem1 = new CartModel(cartId, user.getUid(),
-                            productId, productName, productImg, productPrice, productQuantity, false, size);
+                            productId, productName, productImg, productPrice, productQuantity, true, size);
                     if (cartId != null) {
                         CartdbReference.child(cartId).setValue(cartItem1).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -231,5 +247,6 @@ private void AddToCart() {
         ivSearch = findViewById(R.id.ivSearchInDetail);
         spinSize = findViewById(R.id.spinSize);
         tvBackToHome = findViewById(R.id.tvBack);
+        tvBuyNow = findViewById(R.id.tvBuyNow);
     }
 }

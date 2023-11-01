@@ -19,6 +19,7 @@
             android:layout_marginLeft="25dp"
             android:layout_alignParentTop="true"
             android:layout_marginTop="25dp"
+            android:padding="10dp"
             android:text="Tìm kiếm"
             android:background="@drawable/rectangle_4"
             />
@@ -150,6 +151,7 @@
     </LinearLayout>
 
     <GridView
+
         android:id="@+id/ProductSuggest"
         android:layout_width="394dp"
         android:layout_height="215dp"

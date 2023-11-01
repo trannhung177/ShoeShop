@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class ProfileActivity extends AppCompatActivity {
-    TextView tv_nameProfile,tv_emailProfile, tvExit, tvEditProfile, tvCountProductCart;
+    TextView tv_nameProfile,tv_emailProfile, tvExit, tvEditProfile, tvCountProductCart, tvOrderListInProfile;
     ImageView ivHome, ivCart, ivListProduct;
     DatabaseReference dbCart, dbProfile;
     Intent i;
@@ -35,7 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         anhxa();
-        CountProductInCart();
+        CountProductInOrder();
         UserDetail();
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -59,13 +59,6 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        ivListProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                i = new Intent(ProfileActivity.this, CartActivity.class);
-                startActivity(i);
-            }
-        });
         tvExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,6 +67,15 @@ public class ProfileActivity extends AppCompatActivity {
                     i = new Intent(ProfileActivity.this, SignInWithEmailActivity.class);
                     startActivity(i);
                 }
+
+            }
+        });
+        tvOrderListInProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i = new Intent(ProfileActivity.this, OrderFollow.class);
+                startActivity(i);
+
 
             }
         });
@@ -96,10 +98,10 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void CountProductInCart() {
+    private void CountProductInOrder() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        dbCart = FirebaseDatabase.getInstance().getReference("Carts");
+        dbCart = FirebaseDatabase.getInstance().getReference("Orders");
         String userId = user.getUid();
         // Tạo một truy vấn Firebase để lấy danh sách sản phẩm trong giỏ của người dùng hiện tại (userId)
         Query query = dbCart.orderByChild("userId").equalTo(userId);
@@ -110,9 +112,9 @@ public class ProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int productCount = (int) dataSnapshot.getChildrenCount();
                 // Hiển thị số lượng sản phẩm trong giỏ lên TextView
-                tvCountProductCart.setText("Bạn có "+productCount+ " trong giỏ hàng");
+                tvCountProductCart.setText("Bạn có "+productCount+ " đơn hàng");
                 if( productCount == 0){
-                    tvCountProductCart.setText("Bạn chưa có sản phẩm nào");
+                    tvCountProductCart.setText("Bạn chưa có đơn hàng nào");
                 }
             }
 
@@ -163,7 +165,7 @@ public class ProfileActivity extends AppCompatActivity {
         ivHome = findViewById(R.id.iv_homeiconPr);
         ivCart = findViewById(R.id.ivCartInProfile);
         ivListProduct = findViewById(R.id.ivListProductProfile);
-
+        tvOrderListInProfile = findViewById(R.id.tvOrderListInProfile);
         tv_nameProfile= findViewById(R.id.tv_nameProfile);
         tv_emailProfile= findViewById(R.id.tv_emailProfile);
         tvCountProductCart = findViewById(R.id.tvCountProductOfUser);

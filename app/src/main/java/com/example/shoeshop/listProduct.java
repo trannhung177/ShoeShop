@@ -44,7 +44,7 @@ public class listProduct extends AppCompatActivity {
     EditText edtSearch;
     Spinner spinSize;
     ArrayList<String> spinnerList;
-    ImageView homeicon, ivSearch;
+    ImageView homeicon, ivSearch,img_cartInList;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,13 @@ public class listProduct extends AppCompatActivity {
             }
         });
 
-
+        img_cartInList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(listProduct.this, CartActivity.class);
+                startActivity(i);
+            }
+        });
 
         homeicon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,6 +207,7 @@ public class listProduct extends AppCompatActivity {
         ivSearch = findViewById(R.id.ivSearchIconInList);
         edtSearch   = findViewById(R.id.edtSearchInList);
         spinSize = findViewById(R.id.spinSize);
+        img_cartInList = findViewById(R.id.img_cartInList);
 
     }
     public void ShowList(){

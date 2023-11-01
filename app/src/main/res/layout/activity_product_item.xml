@@ -167,7 +167,7 @@
             android:textColor="@color/white"
             />
         <TextView
-            android:id="@+id/txtBuyNow"
+            android:id="@+id/tvBuyNow"
             android:layout_width="148dp"
             android:layout_height="59dp"
             android:background="@drawable/rectangle_3"

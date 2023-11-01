@@ -106,7 +106,10 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     ProductModel productModel= dataSnapshot.getValue(ProductModel.class);
-                    list.add(productModel);
+                    if(productModel.getProductQuantity() > 120){
+                        list.add(productModel);
+                    }
+
                 }
                 adapter.notifyDataSetChanged();
 

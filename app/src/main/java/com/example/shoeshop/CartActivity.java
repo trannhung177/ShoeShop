@@ -2,6 +2,8 @@ package com.example.shoeshop;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -44,11 +46,11 @@ public class CartActivity extends AppCompatActivity {
     Intent i;
     private EditText edt_search;
     private ImageView ivHome,ivListProduct, ivProfile, ivSearchCart, ivDeleteProduct;
-    private TextView tv_payment, tvTotal;
+    private TextView tvPayment, tvTotal;
     private DatabaseReference dbreference;
     private CartAdapter adapter;
     private ArrayList<CartModel> list;
-    private ListView gridView;
+    private RecyclerView gridView;
     CheckBox cbProduct;
     Double totalPrice = 0.0;
     CheckBox cbSelectAll;
@@ -59,8 +61,6 @@ public class CartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-
-
         anhxa();
         ShowCart();
         ivHome.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +90,22 @@ public class CartActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        tvPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Check if cbSelectAll is checked
+                boolean isSelectAllChecked = cbSelectAll.isChecked();
+                // Create an Intent to start the CheckoutActivity
+                if(isSelectAllChecked){
+                    Intent intent = new Intent(CartActivity.this, PaymentActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(CartActivity.this, "Bạn chưa chọn sản phẩm!!!", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
 
     }
 
@@ -111,6 +127,7 @@ public class CartActivity extends AppCompatActivity {
         btnUpdateCart = findViewById(R.id.btnUpdateCart);
         ivSearchCart = findViewById(R.id.ivSearchCart);
         ivProfile = findViewById(R.id.ivProfileCart);
+        tvPayment = findViewById(R.id.tvPaymentCart);
 
 
     }
@@ -130,16 +147,19 @@ public class CartActivity extends AppCompatActivity {
             dbreference = FirebaseDatabase.getInstance().getReference("Carts");
             list = new ArrayList<>();
             adapter = new CartAdapter(this, list);
+            //gridView.setAdapter(adapter);
             gridView.setAdapter(adapter);
+            gridView.setLayoutManager(new LinearLayoutManager(this));
 
 
             dbreference.addValueEventListener(new ValueEventListener() {
+                @SuppressLint("NotifyDataSetChanged")
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     list.clear();
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         CartModel cart = dataSnapshot.getValue(CartModel.class);
-                        if (cart != null) {
+                        if (cart != null && cart.isCheckCart()) {
                             if (cart.getUserId().equals(userId)) {
                                 list.add(cart);
                             }
