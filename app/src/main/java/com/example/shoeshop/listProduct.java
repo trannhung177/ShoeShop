@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +19,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shoeshop.Adapter.ProductAdapter;
 import com.example.shoeshop.Adapter.ProductItemAdapter;
@@ -53,13 +56,32 @@ public class listProduct extends AppCompatActivity {
 
         anhxa();
         ShowList();
-        SpinnerItem();
+        //SpinnerItem();
         ivSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FilterList();
             }
         });
+
+//        // Assuming edtSearch is your EditText
+//        edtSearch.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                // Not used in this example
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                // Call the FilterList method when the text in the EditText changes
+//                FilterList(charSequence.toString().trim().toLowerCase());
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                // Not used in this example
+//            }
+//        });
 
         img_cartInList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,41 +109,40 @@ public class listProduct extends AppCompatActivity {
             }
         });
     }
-
     String itemSelect ="";
-    private void SpinnerItem() {
-        spinnerList = new ArrayList<>();
-        spinnerList.add("Tên");
-        spinnerList.add("Giá");
-        spinnerList.add("Thương hiệu");
-
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_dropdown_item, spinnerList);
-        spinSize.setAdapter(spinnerAdapter);
-
-        spinSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                itemSelect = spinnerList.get(i);
-
-                if (itemSelect.equals("Tên")) {
-                    // Sắp xếp sản phẩm theo tên sản phẩm ở đây
-                    sortByProductName();
-                } else if (itemSelect.equals("Giá")) {
-                    // Sắp xếp sản phẩm theo giá ở đây
-                    sortByPrice();
-                } else if (itemSelect.equals("Thương hiệu")) {
-                    // Sắp xếp sản phẩm theo thương hiệu ở đây
-                    sortByBrand();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                // Xử lý khi không có mục nào được chọn
-            }
-        });
-    }
+//    private void SpinnerItem() {
+//        spinnerList = new ArrayList<>();
+//        spinnerList.add("Tên");
+//        spinnerList.add("Giá");
+//        spinnerList.add("Thương hiệu");
+//
+//        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,
+//                android.R.layout.simple_spinner_dropdown_item, spinnerList);
+//        spinSize.setAdapter(spinnerAdapter);
+//
+//        spinSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                itemSelect = spinnerList.get(i);
+//
+//                if (itemSelect.equals("Tên")) {
+//                    // Sắp xếp sản phẩm theo tên sản phẩm ở đây
+//                    sortByProductName();
+//                } else if (itemSelect.equals("Giá")) {
+//                    // Sắp xếp sản phẩm theo giá ở đây
+//                    sortByPrice();
+//                } else if (itemSelect.equals("Thương hiệu")) {
+//                    // Sắp xếp sản phẩm theo thương hiệu ở đây
+//                    sortByBrand();
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//                // Xử lý khi không có mục nào được chọn
+//            }
+//        });
+//    }
 
     private void sortByProductName() {
         // Sắp xếp danh sách sản phẩm theo tên sản phẩm
@@ -136,7 +157,6 @@ public class listProduct extends AppCompatActivity {
         // Cập nhật giao diện hoặc danh sách sản phẩm sau khi sắp xếp
         adapter.notifyDataSetChanged();
     }
-
     private void sortByPrice() {
         Collections.sort(list, new Comparator<ProductModel>() {
             @Override
@@ -167,7 +187,7 @@ public class listProduct extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-
+// Tìm kiếm theo tên
     private void FilterList() {
         dbreference= FirebaseDatabase.getInstance().getReference("Products");
         list = new ArrayList<>();
@@ -178,7 +198,6 @@ public class listProduct extends AppCompatActivity {
             ShowList();
         }
         else {
-
             dbreference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -189,8 +208,8 @@ public class listProduct extends AppCompatActivity {
                         if(product.getProductName().toLowerCase().contains(searchByName)){
                             list.add(product);
                         }
-
                     }
+                    //Toast.makeText(listProduct.this, "Số lượng sản phẩm tìm được: "+ list.size(), Toast.LENGTH_SHORT).show();
                     adapter.notifyDataSetChanged();
                 }
                 @Override
@@ -206,7 +225,7 @@ public class listProduct extends AppCompatActivity {
         gridView = findViewById(R.id.recycleviewProduct);
         ivSearch = findViewById(R.id.ivSearchIconInList);
         edtSearch   = findViewById(R.id.edtSearchInList);
-        spinSize = findViewById(R.id.spinSize);
+       // spinSize = findViewById(R.id.spinSize);
         img_cartInList = findViewById(R.id.img_cartInList);
 
     }
@@ -215,7 +234,6 @@ public class listProduct extends AppCompatActivity {
         list = new ArrayList<>();
         adapter=  new ProductAdapter(this, list);
         gridView.setAdapter(adapter);
-        //recyclerView.setAdapter(adepter);
         dbreference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -225,12 +243,9 @@ public class listProduct extends AppCompatActivity {
                     list.add(productModel);
                 }
                 adapter.notifyDataSetChanged();
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }

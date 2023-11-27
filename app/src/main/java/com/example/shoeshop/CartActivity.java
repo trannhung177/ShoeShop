@@ -109,6 +109,7 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
+    //Cập nhật số lượng các sản phẩm
     private void UpdateQuantity() {
         DatabaseReference cartReference = FirebaseDatabase.getInstance().getReference("Carts");
 
@@ -136,7 +137,6 @@ public class CartActivity extends AppCompatActivity {
         // Kiểm tra xem người dùng đã đăng nhập hay chưa
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        Toast.makeText(CartActivity.this, user.getUid(), Toast.LENGTH_SHORT).show();
         if (user.getUid().isEmpty()) {
 
             Intent i = new Intent(CartActivity.this, SignInWithEmailActivity.class);

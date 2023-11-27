@@ -21,13 +21,13 @@
             android:textSize="25dp"
             android:layout_marginLeft="150dp"
             />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/baseline_logout_24"
-            android:textSize="18dp"
             android:layout_marginLeft="150dp"
-            />
+            android:background="@drawable/baseline_logout_24"
+            android:textSize="18dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"

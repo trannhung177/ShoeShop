@@ -32,28 +32,28 @@
             android:src="@drawable/search_icon"/>
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        >
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="Phân loại theo"
-            android:textStyle="bold"
-            android:padding="2dp"
-            android:layout_marginTop="20dp"/>
-        <Spinner
-            android:id="@+id/spinSize"
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp">
+<!--    <LinearLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_gravity="center"-->
+<!--        >-->
+<!--        <TextView-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:text="Phân loại theo"-->
+<!--            android:textStyle="bold"-->
+<!--            android:padding="2dp"-->
+<!--            android:layout_marginTop="20dp"/>-->
+<!--        <Spinner-->
+<!--            android:id="@+id/spinSize"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginLeft="10dp">-->
 
-        </Spinner>
-    </LinearLayout>
+<!--        </Spinner>-->
+<!--    </LinearLayout>-->
 
 
     <GridView

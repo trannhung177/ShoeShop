@@ -78,6 +78,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ivSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i = new Intent(MainActivity.this, listProduct.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void anhxa(){
