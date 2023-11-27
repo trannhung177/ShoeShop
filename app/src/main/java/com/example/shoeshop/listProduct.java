@@ -202,12 +202,20 @@ public class listProduct extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     list.clear(); // Xóa dữ liệu cũ trước khi thêm dữ liệu mới
+                    //int count  = 0;
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         // Xử lý dữ liệu từ snapshot và thêm vào danh sách list
-                        ProductModel product = snapshot.getValue(ProductModel.class);
-                        if(product.getProductName().toLowerCase().contains(searchByName)){
-                            list.add(product);
-                        }
+                        //if(count <10){
+                            ProductModel product = snapshot.getValue(ProductModel.class);
+                            if(product.getProductName().toLowerCase().contains(searchByName)){
+                                list.add(product);
+                            }
+//                            count++;
+//                        }
+//                        else {
+//                            break;
+//                        }
+
                     }
                     //Toast.makeText(listProduct.this, "Số lượng sản phẩm tìm được: "+ list.size(), Toast.LENGTH_SHORT).show();
                     adapter.notifyDataSetChanged();
